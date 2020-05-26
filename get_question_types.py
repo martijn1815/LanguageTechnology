@@ -11,12 +11,12 @@ from final_project import *
 def main(argv):
     nlp = spacy.load('en_core_web_sm')
 
-    where_file = open('questions\where_question.txt', 'w')
-    who_file = open('questions\who_question.txt', 'w')
-    xy_file = open('questions\\x_of_y_question.txt', 'w')
-    truefalse_file = open('questions\\true_false_question.txt', 'w')
-    description_file = open('questions\description_question.txt', 'w')
-    other_file = open('questions\other_question.txt', 'w')
+    where_file = open('questions/where_question.txt', 'w')
+    who_file = open('questions/who_question.txt', 'w')
+    xy_file = open('questions/x_of_y_question.txt', 'w')
+    truefalse_file = open('questions/true_false_question.txt', 'w')
+    description_file = open('questions/description_question.txt', 'w')
+    other_file = open('questions/other_question.txt', 'w')
 
     with open("all_questions_formatted.txt", "r") as file:
         for line in file:
