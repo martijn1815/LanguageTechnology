@@ -335,8 +335,8 @@ def main(argv):
         print(n, end="")
         if answer:
             for ans in answer:
-                if ans == "True": ans = "yes"
-                if ans == "False": ans = "no"
+                if ans == True: ans = "yes"
+                if ans == False: ans = "no"
                 print("\t{0}".format(ans), end="")
         print()
 
