@@ -140,11 +140,11 @@ def who_question(parse, x, y, z):
     return x, y, z
 
 
-def get_x_y(question, print_info=False):
+def get_x_y(question, print_info=True):
     """
     Gets X and Y from questions using spacy
     :param question:    string
-    :return x, y:       string, string
+    :return x, y, z:    string, string, string
     """
 
     nlp = spacy.load('en_core_web_sm')
@@ -170,12 +170,12 @@ def get_x_y(question, print_info=False):
     elif is_truefalse_question(parse):
         # True/False question:
         if print_info: print("True/False question")
-        truefalse_question(parse, x, y, z)
+        x, y, z = truefalse_question(parse, x, y, z)
 
     elif is_description_question(parse):
         # Description question:
         if print_info: print("Description question")
-        description_question(parse, x, y, z)
+        x, y, z = description_question(parse, x, y, z)
 
     elif is_who_question(parse):
         # Who question:
