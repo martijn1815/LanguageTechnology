@@ -140,7 +140,7 @@ def who_question(parse, x, y, z):
     return x, y, z
 
 
-def get_x_y(question, print_info=True):
+def get_x_y(question, print_info=False):
     """
     Gets X and Y from questions using spacy
     :param question:    string
