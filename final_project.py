@@ -326,7 +326,7 @@ def create_and_fire_query(question):
 def main(argv):
     print("# Input a question:")
     for line in sys.stdin:
-        line.strip().split("\t")
+        line = line.strip().split("\t")
         n = line[0]
         question = line[1]
         answer = create_and_fire_query(question)
