@@ -1,0 +1,19 @@
+4	Are dogs mammals?
+5	Are pandas endangered species?
+6	Are sharks mammals?
+7	Are surgery and mutilation the same thing?
+8	Are tomatoes vegetables or fruit?
+171	Is a fork a weapon?
+172	Is a platypus a mammal?
+173	Is a shark a fish or an animal?
+174	Is a thermometer used to measure temperature?
+175	Is atropa belladonna a poisonous plant?
+176	Is chloroform a carcinogen?
+177	Is compound HCl acidic or basic?
+178	Is HTML a markup language?
+179	Is ibuprofen used to treat arthritis?
+181	Is the bengal tiger an endangered species?
+182	Is the human brain symmetrical?
+184	Is the tongue a muscle or an organ?
+217	Was Charles Darwin married?
+218	Was Einstein a man or a woman?

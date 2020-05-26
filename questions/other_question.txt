@@ -1,0 +1,334 @@
+2	A gas giants exists of?
+3	Apple Inc. was founded by who?
+9	As of 19 April 2020, how many people died from COVID-19 ?
+10	At what companies was Elon Musk an employer?
+11	At what speed does a photon move?
+12	At what temperature does glucose melt?
+13	At what temperature does gold melt?
+14	At what temperature does morphine melt?
+15	Botanically, is tomato a fruit?
+16	By who was the Nobel Prize established?
+17	Chemical formula of glucose.
+18	Country, where Large Hadron Collider is constructed?
+19	Did Newton discover Penicilin?
+20	Did the inventor of dynamite have any siblings ?
+21	Differentiate between cosmology and astronomy
+22	From what parts is the neuron constructed?
+23	From which materials is stainless steel made?
+24	Give the chemical formula for glucose?
+28	How big is a tiger at birth?
+29	How big is our solar system?
+30	How big is the Milky Way?
+31	How big is the Sun?
+32	How big is the surface of Jupiter?
+33	How big is the universe?
+34	How can gravity be described?
+35	How can the effects of psilocybin mushrooms be described?
+36	How could you describe the shape of DNA?
+37	How deep is the Mariana Trench
+38	How dense is glass maximally?
+39	How did Alan Turing die?
+40	How did Alan Turing Die?
+41	How do you call someone that practices biology?
+42	How do you call the 2 parts of a leaf?
+43	How do you call the fear of the number 13?
+44	How far away is Alpha Centauri from Earth?
+45	How far away is Mars from Earth at most?
+46	How far away is the closest Star from Earth in whole light-years?
+47	How far away is the Sun?
+48	How far from the Earth is the moon?
+49	How far is the Moon from the Earth?
+50	How fast can a cheetah run?
+51	How heavy is our solar system?
+52	How heavy is the moon?
+53	How heavy is the sun?
+54	How hot does water need to be for it to boil?
+55	How hot is it at the center of the Sun?
+56	How hot is the centre of the sun?
+57	How hot is the sun at its core?
+58	How hot is the Sun's centre?
+63	How large is a red blood cell?
+64	How large is Jupiter?
+65	How large is the Great Barrier Reef?
+66	How large is the Universe?
+67	How long are koala's pregnant?
+68	How long does it take for Mars to make one rotation?
+69	How long does it take for Saturn to make an orbit around the Sun?
+70	How long does it take Mercury to revolve around the sun?
+71	How long does it take Pluto to make one full revolution?
+72	How long does SARS incubate in humans maximally?
+73	How long is a light-year?
+74	How long is an astronomical unit?
+75	How long is the diameter of universe in kilometers?
+76	How long is the distance between earth and moon?
+77	How long was Wubbo Ockels in space?
+78	How many atoms are in formaldehyde?
+79	How many awards has Albert Einstein received?
+80	How many bits are in a byte?
+81	How many bones are in a human, adult body?
+82	How many bones does the average adult human skeleton contain?
+83	How many bones does the human body have?
+84	How many children did Charles Darwin have?
+85	How many chromosomes does one human have?
+86	How many colors are in a rainbow?
+87	How many constellations exist?
+88	How many countries did Einstein have citizenship of?
+89	How many countries have Dutch as official language?
+90	How many days are required for the Jupiter to complitly orbit around the sun?
+91	How many deaths were caused by COVID-19 as of 19 April 2020?
+92	How many groups are there in the periodic table?
+93	How many kilograms are in a yottagram
+94	How many kilometers in one light year?
+95	How many kilometers is a light-year?
+96	How many languages did Nikola Tesla speak
+97	How many laws of motion are there?
+98	How many laws of motion did Newton invent?
+99	How many megabyte are in a gigabyte?
+100	How many member states does CERN have?
+101	How many moons does Mars have?
+102	How many natural satelites does Earth have?
+103	How many nobel prizes has Marie Curie won?
+104	How many occupations did Isaac Newton have?
+105	How many oxygen atoms are in one molecule of glucose?
+106	How many parts does the brain stem has?
+107	How many people died of COVID-19 by 11 April 2020?
+108	How many people died of COVID-19 on 10 April 2020?
+109	How many people have been on the moon?
+110	How many people have been on the Moon?
+111	How many people have walked on the moon?
+112	How many people walked on the moon?
+113	How many planets are in the Solar system?
+114	How many planets away is Mars from the sun?
+115	How many protons are in the sodium?
+116	How many sides does a dodecagon have?
+117	How much does a baby giant panda weigh?
+118	How much does a female emu weigh?
+119	How much does Pluto weigh?
+120	How much does the earth weigh?
+121	How much does the planet Jupiter weigh?
+122	How much does the sun weigh?
+123	How much energy does the sun emit?
+124	How much is a light-year in kilometres?
+125	How much is one Solar Mass, when converted to the international system (SI) unit for mass?
+126	How much joule per kilogram energy does glass embody?
+127	How old can a cow get?
+128	How old did the oldest human get?
+129	How old is the earth?
+130	How old is the Earth?
+131	How old is the internet?
+132	How old is the moon?
+133	How old is the sun?
+134	How old is the universe?
+135	How old was the oldest human?
+136	How old was the oldest tiger?
+137	How spicy is a ghost pepper on the scale of Scoville?
+138	How strong is the moon's gravity?
+139	How tall are elephants?
+140	How warm is it in the centre of the sun?
+142	How wide is the universe?
+143	In what city was Joe Rogan born?
+144	In what country can you find the mount everest?
+145	In what country was Albert Einstein born?
+146	In what country where the Solvay Conferences held?
+147	In what field did Terence McKenna work in?
+148	In what fields did Marie Curie work?
+149	In what languages did Isaac Newton write?
+150	In what month was NASA founded?
+151	In what part of the human body can the brain be found?
+152	In what scales can you measure temperature?
+153	In what year did Einstein come up with the theory of special relativity ?
+154	In what year Naruto was published for the first time?
+155	In what year was einsteinium discovered?
+156	In what year was Google founded?
+157	In what year was methylphenidate first discovered?
+158	In what year was polonium discovered?
+161	In what year were tanks invented?
+166	In which part of the cell can you find mitochondria?
+169	In which year was WiFi invented?
+185	Ivan Pavlov was nominated for how many Nobel Prizes?
+186	Mention the four symptoms of migraine.
+189	Name Albert Einsteins sibling?
+190	Name all crew members of the Apollo 15 mission.
+191	Name the children of Leonhard Euler (the mathematician).
+192	Name the parts that should generally be present in an SSD.
+193	Name two exact sciences
+194	Of which parts does a battery consist?
+195	On average, how many days does the pregnancy of a koala take?
+198	On which island did the, now extinct, Dodo live?
+200	Quantum physics is said to be the same as?
+201	Resonance causes an Increase/Decrease of Amplitude/Frequency?
+203	The man who wrote 'On the origin of species, by means of natural selection'.
+204	The prometaphase is preceded by what other phase during mytosis?
+205	The radius of Jupiter is how many kilometres?
+206	To what genus does the species Egyptian goose belong?
+207	To what person does the Kuiper Belt owe its name?
+208	To what taxonomic group belongs the giraffe?
+209	To what universities did Otto Von Bismarck go?
+211	To which family does a Python (snake) belong?
+212	To which subfamily belongs the Bandicoot?
+213	True of false: the first telephone was invented in 1876
+214	Under what label does Angerfist produce?
+215	Under whose initiative was ENIAC developed?
+216	Until when was Pluto considered a planet?
+219	What academic discipline studies Homo sapiens?
+220	What age was Charles Darwin when he died?
+221	What area of the brain is important for language?
+267	What bacteria have caused the plague?
+268	What caused Alan Turing's death?
+269	What causes cerebral palsy?
+271	What chemical elements form penicillin?
+272	What class of star is Betelgeuse?
+273	What countries is the Large Hadron Collider in?
+274	What creates a rainbow?
+275	What criteria are used to determine whether something is a scientific field?
+276	What criteria determine whether something is a scientific field?
+277	What did Alan Turing do?
+278	What did Thomas Edison die from?
+279	What did Turing die of?
+280	What did Wilhelm Röntgen die from?
+281	What does a CPU connect with?
+282	What does a molecule consist of?
+283	What does anthropology study?
+284	What does blood consist of?
+285	What does DNA stand for?
+286	What does LCD stand for?
+287	What does "REM sleep" stand for?
+288	What does snow consist out of?
+289	What does survival of the fittest mean?
+290	What does the abbreviation DNA stand for?
+291	What does the acronym NASA stand for?
+292	What does the Dijkstra algorithm solve?
+293	What does the field of Information Science study?
+294	What does the mitochondrion consist of?
+295	What does the Planck constant measure?
+296	What does the unit 'ohm' denote?
+297	What does WiFi stand for?
+298	What does x86 stand for in computer terms?
+299	What does zoonosis mean?
+300	What domain do animals belong to?
+301	What do people in the field of Aerophilately study?
+302	What do the letters DNA stand for?
+303	What do we call a practitioner of Earth Sciences?
+304	What do we call the partiality that prevents objective or alternative consideration of an issue or situation in a scientific experiment?
+305	What factors can contribute to heart disease?
+306	What fields are part of the physical sciences?
+307	What fields did Newton work in?
+308	What fields is the study of statistics part of?
+309	What important phenomenon associated with the universe occurred 13798 million years BCE?
+310	What important projects did Charles Babbage work on?
+568	What kind of allergy is a peanut allergy?
+569	What kind of disease can you get if you don't protect your eyes from ultraviolet?
+570	What kind of interaction does a quark have?
+571	What kind of waves are present during an earthquake?
+572	What languages did Isaac Newton speak?
+573	What makes plants green?
+574	What mass does a human brain typically have?
+575	What mass does the Andromeda galaxy have?
+576	What mercury level can be immediatly dangerous for human life or health?
+577	What Nobel Prize did Marie Curie win?
+578	What Nobel prize did Werner Heisenberg win?
+579	What parts are in a personal computer?
+580	What parts does a brain have?
+581	What parts does a motherboard consist of?
+582	What parts does a neuron consists of?
+583	What planet has the largest radius in the solar system?
+584	What planets are in our Solar System?
+585	What planets are part of the inner Solar System?
+586	What planets does the inner solar system contain?
+588	What shape does DNA have?
+589	What sort of data do corpus linguists analyse?
+590	What sort of infection is the common cold?
+591	What sound does a cat make?
+593	What substance is hair made of?
+594	What symbol is used to denote the gravitational constant?
+595	What technique is magnetic-resonance imaging based on?
+596	What temperature does the sun have at its core?
+597	What temperature is the sun at its core?
+598	What terms could be used to describe the shape of DNA?
+599	What type of animal is an elephant?
+600	What type of astronomy started at 1200 BCE?
+601	What type of boundary has the sun?
+602	What type of cell is produced by the bone marrow?
+603	What types of animal have gills?
+604	What types of Nobel Prices exist?
+605	What units is the newton based on?
+606	What unit symbol is used to denote the speed of light?
+607	What University did Isaac Newton work for?
+608	What university was Alan Turing a student of when he published his doctoral thesis?
+609	What village was Nikola Tesla born in?
+626	What year did Pluto stop being classified as a planet ?
+627	What year was the first iPhone available?
+628	What year was the telephone invented?
+629	When Apple Inc. was founded
+630	When did Alexander Graham Bell die?
+631	When did Baroque music fall out of fashion?
+632	When did Isaac Newton win the Knight Bachelor award?
+633	When did John Conway die?
+634	When did Stephen Hawking get his doctorate?
+635	When did the big bang happen?
+636	When did the Big Bang happen?
+637	When did the Big Bang occur?
+638	When did the black plague begin?
+639	When did the first human land on the moon?
+640	When did the ISS launch into space?
+641	When did the planet Mars form?
+642	When did the specie Homo Neanderthalensis go extinct?
+643	When did the specie Homo Sapiens first appear on Earth?
+644	When did the universe begin?
+645	When did world war 1 end?
+743	Which artery supplies blood to the liver?
+744	Which austronaut missions was Neil Armstrong on?
+745	Which awards did Alan Turing receive?
+746	Which book did Charles Darwin published in 1875?
+747	Which chemical substances make up water?
+748	Which concepts are studied by a biologist?
+749	Which country did Alan Turing belong to?
+750	Which country or countries contain the highest mountains in the world?
+751	Which drugs are used to treat skin cancer?
+752	Which dutch inventor was born in 1632 and died in 1723?
+753	Which eclipse is it when the moon is between the sun and the earth?
+754	Which elements make up liquid water?
+755	Which fields did Isaac Newton work in?
+756	Which fruit are plantains often compared to?
+757	Which galaxy is the closest to us?
+758	Which genus is the red fox a member of?
+759	Which hemisphere does the Cancer constellation appear?
+760	Which human bone is the longest?
+761	Which languages did Albert Einstein speak?
+762	Which launch vehicle was used to launch the Kepler space telescope?
+763	Which laws are included in Newton's laws of motion?
+764	Which mammal was "Animal of the Year" in Germany in 2005?
+765	Which material is carbon based and has a mass of 12.01 gram per mole?
+766	Which medical condition is caused by trisomy of chromosome 21?
+767	Which members of the Bernoulli family were mathematicians?
+768	Which Nobel Prize laureates have been Muslim?
+769	Which noble gas is used in radiotherapy?
+770	Which number does iron have in the periodic table?
+772	Which part of the body is operated on during a cesarean section?
+773	Which parts does a plant consist of?
+774	Which parts make up a neuron?
+775	Which person is the term 'algorithm' named after?
+776	Which planet has a crater named 'Bordeaux'?
+777	Which planet is the third planet from the Sun in the Solar System?
+778	Which planet of our solar system has the maximum apoapsis?
+779	Which planets are included in the Inner Solar System?
+780	Which planets in our solar system can be referred to as an inner planet?
+781	Which programming languages influenced COBOL?
+782	Which programming languages where used to create Twitter?
+783	Which science studies the brain?
+784	Which scientific field studies the lithosphere?
+785	Which scientists contributed to the theory of quantum mechanics?
+786	Which shapes does DNA have?
+787	Which sounds can a dog produce?
+788	Which start does Mercury orbit around?
+789	Which telescope is part of the Goddard Space Flight Center?
+790	Which temperature make the gold to be melted?
+791	Which three astronauts piloted Apollo 11?
+792	Which two parts of a tree form the crown?
+793	Which woman received the Nobel prize for both Chemistry and Physics?
+794	Which year did the Spanish flu start?
+919	Why does the universe exist?
+920	With how many constellations does Ursa Major share borders with?
+921	With which two components can the amount of Volt be calculated?
+922	With whom did Dmitri Mendeleev receive the Davy Medal?
+923	WWhat parts of the Central Nervous System are there?

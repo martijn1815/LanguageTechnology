@@ -1,0 +1,71 @@
+809	Who belonged Albert Einstein's brain to?
+810	Who built the Franeker planetarium?
+811	Who created the programming language PHP?
+812	Who created the the many-worlds interpretation of quantum mechanics ?
+813	Who designed Fortran?
+814	Who designed the programming language Go?
+815	Who developed the first computer worm?
+816	Who developed the theory of general relativity?
+817	Who developed the theory of relativity?
+818	Who discoverd evolution?
+819	Who discovered electromagnetic radiation?
+820	Who discovered Peniciline?
+821	Who discovered penicillin?
+822	Who discovered polonium?
+823	Who discovered radium?
+824	Who discovered special relativity?
+825	Who discovered the chemical element Germanium?
+826	Who discovered the electron?
+827	Who discovered the last chemical element?
+828	Who discovered the main-belt asteroid called "21 Lutetia"?
+829	Who discovered the penicilin?
+830	Who discovered the Quantum Hall effect?
+831	Who discovered the theory of evolution?
+832	Who discovered the theory of relativity?
+833	Who discovered Uranus?
+834	Who established homeopathy?
+835	Who established the Nobel Prize?
+836	Who founded Apple Inc.
+837	Who founded Apple Inc.?
+838	Who founded Stanford University?
+839	Who found the electron?
+840	Who has walked on the moon?
+841	Who influenced Nicolas Tesla in his work?
+842	Who invented alpha-beta pruning?
+843	Who invented calculus?
+844	Who invented penicillin?
+845	Who invented Python
+846	Who invented the car and when?
+847	Who invented the first telephone?
+848	Who invented the game of life?
+849	Who invented the Game of life?
+850	Who invented the incandescent light bulb?
+851	Who invented the internet?
+852	Who invented the microscope?
+853	Who invented the periodic table?
+854	Who invented the piano?
+855	Who invented the polio vaccine?
+856	Who invented the programming language 'Python'?
+857	Who invented the relativity theory?
+858	Who invented the stethoscope?
+859	Who invented the telephone?
+860	Who invented the television?
+861	Who invented the world wide web?
+879	Who made the operating system android?
+880	Who or what was the Python programming language named after?
+881	Who owned Alan Turing teddy bear?
+882	Who posed the theory of evolution?
+883	Who received the Nobel Prize in Physics in 1921?
+884	Who recieved the Smith's Prize in 1936?
+885	Who served as the crew for the Apollo 11 spaceflight mission?
+908	Who won a nobel prize in physics between 1901 and 1903?
+909	Who won the 2019 Rugby World Cup?
+910	Who won the first Nobel Price in Physics?
+911	Who won the nobel price in Physics in 2017?
+912	Who won the nobel prize for physics in 1971?
+913	Who won the nobel prize in physics in 1909 ? ?
+914	Who won the Nobel Prize in Physics in 1915?
+915	Who won the Nobel Prize in Physiology or Medicine togheter with Paul Greengard and Arvid Carlsson in 2000?
+916	Who wrote the article "The Extended Mind"?
+917	Who wrote the first computer algorithm?
+918	Who wrote the Leviathan?
