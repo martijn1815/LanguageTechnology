@@ -2,7 +2,7 @@
 """
 File:       get_question_types.py
 Author:     Martijn E.N.F.L. Schendstok
-Date:       15 May 2020
+Date:       26 May 2020
 """
 
 from final_project import *
@@ -50,8 +50,6 @@ def main(argv):
             else:
                 with open("other_question.txt", "a") as out_file:
                     out_file.write(line + "\n")
-
-
 
 
 if __name__ == "__main__":
