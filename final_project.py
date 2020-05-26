@@ -326,11 +326,19 @@ def create_and_fire_query(question):
 def main(argv):
     print("# Input a question:")
     for line in sys.stdin:
-        line = line.rstrip()  # removes newline
-        answer = create_and_fire_query(line)
+        line.strip().split("\t")
+        n = line[0]
+        question = line[1]
+        answer = create_and_fire_query(question)
+
+        # Print output:
+        print(n, end="")
         if answer:
             for ans in answer:
-                print(ans)
+                if ans == "True": ans = "yes"
+                if ans == "False": ans = "no"
+                print("\t{0}".format(ans), end="")
+        print()
 
 
 if __name__ == "__main__":
