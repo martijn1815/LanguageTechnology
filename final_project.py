@@ -1,28 +1,16 @@
 #!/usr/bin/python3
 """
-File:       s2688174.py
-Author:     Martijn E.N.F.L. Schendstok
-Date:       15 May 2020
+File:       final_project.py
+Authors:    Martijn E.N.F.L. Schendstok (s2688174)
+            Jannick
+            Niels
+            Mariska
+Date:       26 May 2020
 """
 
 import sys
 import requests
 import spacy
-
-
-def print_example_queries():
-    print("1)  What is the taxon name of the lion?")
-    print("2)  What is the moon's surface gravity?")
-    print("3)  What is the orbital period of the Earth? ")
-    print("4)  Where was Nikola Tesla born?")
-    print("5)  Where did Albert Einstein die?")
-    print("6)  What is a brain?")
-    print("7)  Who was F. D. C. Willard?")
-    print("8)  Is HTML a markup language?")
-    print("9)  Is chloroform a carcinogen?")
-    print("10) Who discovered radium?")
-    print("11) Who invented the internet?\n")
-    print("12) What are the symptoms of influenza?\n")
 
 
 def print_token_info(token):
@@ -33,6 +21,123 @@ def print_token_info(token):
                                                                  token.head.lemma_,
                                                                  token.head.dep_,
                                                                  list(token.subtree)))
+
+
+def is_where_question(parse):
+    if parse[0].lemma_ == "where":
+        return True
+    return False
+
+
+def where_question(parse, x, y, z):
+    for token in parse:
+        if token.head.lemma_ == "be":
+            x = "location"
+        # Place of birth:
+        if token.head.lemma_ == "bear":
+            x = "place of birth"
+        # Place of death:
+        if token.head.lemma_ == "die":
+            x = "place of death"
+
+        if token.dep_ in ["nsubj", "nsubjpass"] or (token.head.dep_ in ["nsubj", "compound"] and
+                                                    token.dep_ in ["amod", "compound"]):
+            y += token.text + " "
+    if not x: x = "location"
+
+    return x, y, z
+
+
+def is_xy_question(parse):
+    if parse[0].head.lemma_ == "be" and parse[0].head.dep_ == "ROOT":
+        prep = False
+        for t in parse[:-2]:
+            if t.dep_ == "prep" or (t.head.pos_ == "NOUN" and
+                                    t.dep_ == "case"):  # -X of Y- or -X's Y-
+                prep = True
+        if prep:
+            return True
+    return False
+
+
+def xy_question(parse, x, y, z):
+    for token in parse:
+
+        if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
+                                       token.dep_ in ["amod", "compound"]))
+                and token.pos_ not in ["PRON", "DET"]):
+            x += token.lemma_ + " "
+        elif token.dep_ == "attr" and token.pos_ == "NOUN" and token.head.lemma_ == "be":
+            x += token.lemma_ + " "
+
+        if token.dep_ == "pobj" or (token.head.dep_ == "pobj" and
+                                    token.dep_ in ["amod", "compound"] and
+                                    token.pos_ not in ["PRON", "DET"]):
+            y += token.text + " "
+        elif token.dep_ == "poss" or (token.head.dep_ == "poss" and
+                                      token.dep_ in ["amod", "compound"] and
+                                      token.pos_ not in ["PRON", "DET"]):
+            y += token.text + " "
+
+    return x, y, z
+
+
+def is_truefalse_question(parse):
+    if not is_xy_question(parse) and parse[0].lemma_ == "be":
+        return True
+    return False
+
+
+def truefalse_question(parse, x, y, z):
+    for token in parse:
+        if ((token.dep_ in ["attr", "appos", "acomp"] and token.head.dep_ in ["ROOT", "nsubj"]) or
+                (token.head.dep_ == "attr" and token.dep_ == "amod")):
+            z += token.text + " "
+        elif token.dep_ in ["nsubj", "compound", "nmod"] and (
+                token.head.dep_ in ["attr", "appos", "nsubj"] or
+                token.pos_ in ["VERB", "PROPN", "NOUN"]):
+            y += token.lemma_ + " "
+
+    return x, y, z
+
+
+def is_description_question(parse):
+    if not is_xy_question(parse) and parse[1].lemma_ == "be":
+        return True
+    return False
+
+
+def description_question(parse, x, y, z):
+    for token in parse:
+        if token.pos_ in ["NOUN", "PROPN"] or (token.pos_ == "ADJ" and
+                                               token.head.pos_ == "NOUN"):
+            y += token.text + " "
+
+    return x, y, z
+
+
+def is_who_question(parse):
+    if parse[0].lemma_ == "who":
+        return True
+    return False
+
+
+def who_question(parse, x, y, z):
+    for token in parse:
+
+        if token.pos_ == "VERB":
+            vowels = ["a", "e", "i", "o", "u"]
+            if token.lemma_[-1] in vowels:
+                x = token.lemma_ + "r"
+            elif token.lemma_[-1] == "t":
+                x = token.lemma_ + "or"
+            else:
+                x = token.lemma_ + "er"
+
+        if token.pos_ in ["NOUN", "PROPN"]:
+            y += token.text + " "
+
+    return x, y, z
 
 
 def get_x_y(question, print_info=False):
@@ -52,89 +157,30 @@ def get_x_y(question, print_info=False):
         for token in parse:
             print_token_info(token)
 
-    if parse[0].lemma_ == "where":
+    if is_where_question(parse):
         # Where question:
         if print_info: print("Where question")
-        for token in parse:
-            if token.head.lemma_ == "be":
-                x = "location"
-            # Place of birth:
-            if token.head.lemma_ == "bear":
-                x = "place of birth"
-            # Place of death:
-            if token.head.lemma_ == "die":
-                x = "place of death"
+        x, y, z = where_question(parse, x, y, z)
 
-            if token.dep_ in ["nsubj", "nsubjpass"] or (token.head.dep_ in ["nsubj", "compound"] and
-                                                        token.dep_ in ["amod", "compound"]):
-                y += token.text + " "
-        if not x: x = "location"
+    elif is_xy_question(parse):
+        # X of Y question
+        if print_info: print("X of Y question")
+        x, y, z = xy_question(parse, x, y, z)
 
-    elif parse[0].head.lemma_ == "be" and parse[0].head.dep_ == "ROOT":
-        prep = False
-        for t in parse[:-2]:
-            if t.dep_ == "prep" or (t.head.pos_ == "NOUN" and
-                                    t.dep_ == "case"):  # -X of Y- or -X's Y-
-                prep = True
-        if prep:
-            # X of Y question
-            if print_info: print("X of Y question")
-            for token in parse:
+    elif is_truefalse_question(parse):
+        # True/False question:
+        if print_info: print("True/False question")
+        truefalse_question(parse, x, y, z)
 
-                if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
-                                               token.dep_ in ["amod", "compound"]))
-                        and token.pos_ not in ["PRON", "DET"]):
-                    x += token.lemma_ + " "
-                elif token.dep_ == "attr" and token.pos_ == "NOUN" and token.head.lemma_ == "be":
-                    x += token.lemma_ + " "
+    elif is_description_question(parse):
+        # Description question:
+        if print_info: print("Description question")
+        description_question(parse, x, y, z)
 
-                if token.dep_ == "pobj" or (token.head.dep_ == "pobj" and
-                                            token.dep_ in ["amod", "compound"] and
-                                            token.pos_ not in ["PRON", "DET"]):
-                    y += token.text + " "
-                elif token.dep_ == "poss" or (token.head.dep_ == "poss" and
-                                              token.dep_ in ["amod", "compound"] and
-                                              token.pos_ not in ["PRON", "DET"]):
-                    y += token.text + " "
-
-        else:
-            if parse[0].lemma_ == "be":
-                # True/False question:
-                if print_info: print("True/False question")
-                for token in parse:
-                    if ((token.dep_ in ["attr", "appos", "acomp"] and token.head.dep_ in ["ROOT", "nsubj"]) or
-                            (token.head.dep_ == "attr" and token.dep_ == "amod")):
-                        z += token.text + " "
-                    elif token.dep_ in ["nsubj", "compound", "nmod"] and (
-                            token.head.dep_ in ["attr", "appos", "nsubj"] or
-                            token.pos_ in ["VERB", "PROPN", "NOUN"]):
-                        y += token.lemma_ + " "
-
-            elif parse[1].lemma_ == "be":
-                # Description question:
-                if print_info: print("Description question")
-                for token in parse:
-                    if token.pos_ in ["NOUN", "PROPN"] or (token.pos_ == "ADJ" and
-                                                           token.head.pos_ == "NOUN"):
-                        y += token.text + " "
-
-
-    elif parse[0].lemma_ == "who":
+    elif is_who_question(parse):
         # Who question:
         if print_info: print("Who question")
-        for token in parse:
-
-            if token.pos_ == "VERB":
-                vowels = ["a", "e", "i", "o", "u"]
-                if token.lemma_[-1] in vowels:
-                    x = token.lemma_ + "r"
-                elif token.lemma_[-1] == "t":
-                    x = token.lemma_ + "or"
-                else:
-                    x = token.lemma_ + "er"
-
-            if token.pos_ in ["NOUN", "PROPN"]:
-                y += token.text + " "
+        x, y, z = who_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     return x.strip(), y.strip(), z.strip()
@@ -278,16 +324,6 @@ def create_and_fire_query(question):
 
 
 def main(argv):
-    print("Possible question types:\n"
-          "- X of Y questions\n"
-          "- X's Y questions\n"
-          "- Where questions\n"
-          "- Who questions\n"
-          "- True/False questions\n"
-          "- Description questions\n"
-          "\n"
-          "Examples:")
-    print_example_queries()
     print("# Input a question:")
     for line in sys.stdin:
         line = line.rstrip()  # removes newline
