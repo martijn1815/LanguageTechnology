@@ -49,7 +49,7 @@ def where_question(parse, x, y, z):
 
 
 def is_xy_question(parse):
-    if parse[0].head.lemma_ == "be" and parse[0].head.dep_ == "ROOT":
+    if parse[0].head.lemma_ in ["be", "move"] and parse[0].head.dep_ == "ROOT":
         prep = False
         for t in parse[:-2]:
             if t.dep_ == "prep" or (t.head.pos_ == "NOUN" and
@@ -67,10 +67,10 @@ def xy_question(parse, x, y, z):
                                        token.dep_ in ["amod", "compound"]))
                 and token.pos_ not in ["PRON", "DET"]):
             x += token.lemma_ + " "
-        elif token.dep_ == "attr" and token.pos_ == "NOUN" and token.head.lemma_ == "be":
+        elif token.dep_ in ["attr", "pcomp"] and token.pos_ == "NOUN" and token.head.lemma_ in ["be", "at"]:
             x += token.lemma_ + " "
 
-        if token.dep_ == "pobj" or (token.head.dep_ == "pobj" and
+        if token.dep_ == "pobj" or (token.head.dep_ in ["pobj", "ROOT"] and
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET"]):
             y += token.text + " "
@@ -284,7 +284,7 @@ def create_and_fire_query(question):
     :return answer:     list
     """
 
-    x, y, z = get_x_y(question)
+    x, y, z = get_x_y(question, print_info=True)
     for j in range(3):  # Check top 3 entity options
         # Check bi-grams as well if y contains more than 2 tokens:
         y_list = [y]

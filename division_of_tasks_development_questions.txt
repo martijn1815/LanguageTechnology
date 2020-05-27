@@ -1,4 +1,4 @@
-1	At what speed does a photon move?                   Unit of x question (X of Y) Could not find an answer
+1	At what speed does a photon move?                   Unit of x question (X of Y) works (if photon is changed to light)
 2	How big is the Milky Way?                           Unit of x question (X of Y) Could not find an answer
 3	How many awards has Albert Einstein received?       Count question              Could not find an answer
 4	How many languages did Nikola Tesla speak?          Count question              Could not find an answer
