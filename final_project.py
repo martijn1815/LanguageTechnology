@@ -2,7 +2,7 @@
 """
 File:       final_project.py
 Authors:    Martijn E.N.F.L. Schendstok (s2688174)
-            Jannick
+            Jannick Akkermans (s3429075)
             Niels
             Mariska
 Date:       26 May 2020
