@@ -11,6 +11,6 @@
 
 Devision of questions:
 Martijn     7, 8, 3, 4
-Jannick     1, 2
-Niels
-Mariska
+Jannick     1, 2, 5
+Niels       10
+Mariska     6, 9
