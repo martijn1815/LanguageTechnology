@@ -49,10 +49,10 @@ def where_question(parse, x, y, z):
 
 
 def is_xy_question(parse):
-    if parse[0].head.lemma_ in ["be", "move"] and parse[0].head.dep_ == "ROOT":
+    if (parse[0].head.lemma_ in ["be", "move"] and parse[0].head.dep_ == "ROOT") or (parse[1].head.lemma_ in ["be", "move"] and parse[1].head.dep_ == "ROOT"):
         prep = False
         for t in parse[:-2]:
-            if t.dep_ == "prep" or (t.head.pos_ == "NOUN" and
+            if t.dep_ in ["prep", "advmod"] or (t.head.pos_ == "NOUN" and
                                     t.dep_ == "case"):  # -X of Y- or -X's Y-
                 prep = True
         if prep:
@@ -61,13 +61,14 @@ def is_xy_question(parse):
 
 
 def xy_question(parse, x, y, z):
+    translation_dict = {'big ': 'diameter'}
     for token in parse:
 
         if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
                                        token.dep_ in ["amod", "compound"]))
-                and token.pos_ not in ["PRON", "DET"]):
+                and token.pos_ not in ["PRON", "DET"]) and x == '':
             x += token.lemma_ + " "
-        elif token.dep_ in ["attr", "pcomp"] and token.pos_ == "NOUN" and token.head.lemma_ in ["be", "at"]:
+        elif token.dep_ in ["attr", "pcomp", "acomp"] and token.pos_ in ["NOUN", "ADJ"] and token.head.lemma_ in ["be", "at"] and x == '':
             x += token.lemma_ + " "
 
         if token.dep_ == "pobj" or (token.head.dep_ in ["pobj", "ROOT"] and
@@ -78,6 +79,13 @@ def xy_question(parse, x, y, z):
                                       token.dep_ in ["amod", "compound"] and
                                       token.pos_ not in ["PRON", "DET"]):
             y += token.text + " "
+        elif token.dep_ == "compound" and token.head.dep_ == "nsubj":
+            y += token.text + " " + token.head.text + " "
+
+    try:
+        x = translation_dict[x]
+    except KeyError:
+        pass
 
     return x, y, z
 
