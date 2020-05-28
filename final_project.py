@@ -49,7 +49,7 @@ def where_question(parse, x, y, z):
 
 
 def is_xy_question(parse):
-    if (parse[0].head.lemma_ in ["be", "move"] and parse[0].head.dep_ == "ROOT") or (parse[1].head.lemma_ in ["be", "move"] and parse[1].head.dep_ == "ROOT"):
+    if (parse[0].head.lemma_ in ["be", "move", "name"] and parse[0].head.dep_ == "ROOT") or (parse[1].head.lemma_ in ["be", "move"] and parse[1].head.dep_ == "ROOT"):
         prep = False
         for t in parse[:-2]:
             if t.dep_ in ["prep", "advmod"] or (t.head.pos_ == "NOUN" and
@@ -71,16 +71,22 @@ def xy_question(parse, x, y, z):
         elif token.dep_ in ["attr", "pcomp", "acomp"] and token.pos_ in ["NOUN", "ADJ"] and token.head.lemma_ in ["be", "at"] and x == '':
             x += token.lemma_ + " "
 
-        if token.dep_ == "pobj" or (token.head.dep_ in ["pobj", "ROOT"] and
+        if (token.dep_ == "pobj" and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET"]):
             y += token.text + " "
         elif token.dep_ == "poss" or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
-                                      token.pos_ not in ["PRON", "DET"]):
+                                      token.pos_ not in ["PRON", "DET"]) and y == '':
             y += token.text + " "
-        elif token.dep_ == "compound" and token.head.dep_ == "nsubj":
+
+        if token.dep_ == "compound" and token.head.dep_ == "nsubj":
             y += token.text + " " + token.head.text + " "
+        elif token.dep_ == "compound" and token.head.dep_ == 'dobj':
+            x += token.lemma_ + " " + token.head.lemma_ + " "
+
+        if token.dep_ == "nummod" and token.head.dep_ == "nmod":
+            y += token.head.text + " " + token.text + " "
 
     try:
         x = translation_dict[x]
