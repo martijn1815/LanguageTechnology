@@ -31,6 +31,7 @@ def is_where_question(parse):
 
 def where_question(parse, x, y, z):
     for token in parse:
+        print(token.head.lemma_)
         if token.head.lemma_ == "be":
             x = "location"
         # Place of birth:
@@ -39,6 +40,8 @@ def where_question(parse, x, y, z):
         # Place of death:
         if token.head.lemma_ == "die":
             x = "place of death"
+        if token.head.lemma_ == "study":
+            x = "student of"
 
         if token.dep_ in ["nsubj", "nsubjpass"] or (token.head.dep_ in ["nsubj", "compound"] and
                                                     token.dep_ in ["amod", "compound"]):
