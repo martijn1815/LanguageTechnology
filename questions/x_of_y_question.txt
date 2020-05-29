@@ -1,7 +1,51 @@
 0	After which French physician is Gilbert syndrome named?
 1	After whom was the asteroid 1134 Kepler named?
+11	At what speed does a photon move?
+15	Botanically, is tomato a fruit?
 25	How are elements organized on the periodic table of elements?
+28	How big is a tiger at birth?
+29	How big is our solar system?
+30	How big is the Milky Way?
+31	How big is the Sun?
+32	How big is the surface of Jupiter?
+33	How big is the universe?
+37	How deep is the Mariana Trench
+38	How dense is glass maximally?
+48	How far from the Earth is the moon?
+49	How far is the Moon from the Earth?
+51	How heavy is our solar system?
+52	How heavy is the moon?
+53	How heavy is the sun?
+55	How hot is it at the center of the Sun?
+56	How hot is the centre of the sun?
+57	How hot is the sun at its core?
+58	How hot is the Sun's centre?
 61	How is the shape of DNA defined?
+63	How large is a red blood cell?
+64	How large is Jupiter?
+65	How large is the Great Barrier Reef?
+66	How large is the Universe?
+67	How long are koala's pregnant?
+73	How long is a light-year?
+74	How long is an astronomical unit?
+75	How long is the diameter of universe in kilometers?
+76	How long is the distance between earth and moon?
+77	How long was Wubbo Ockels in space?
+124	How much is a light-year in kilometres?
+125	How much is one Solar Mass, when converted to the international system (SI) unit for mass?
+129	How old is the earth?
+130	How old is the Earth?
+131	How old is the internet?
+132	How old is the moon?
+133	How old is the sun?
+134	How old is the universe?
+135	How old was the oldest human?
+136	How old was the oldest tiger?
+137	How spicy is a ghost pepper on the scale of Scoville?
+138	How strong is the moon's gravity?
+139	How tall are elephants?
+140	How warm is it in the centre of the sun?
+142	How wide is the universe?
 159	In what year was the personal computer invented?
 160	In what year were Newton's laws of motion published?
 162	In which constellation is the star PB 1934?
@@ -13,9 +57,15 @@
 170	In which year were the Olympics held in Paris?
 180	Is reaction a part of Newtons third law of motion?
 183	Is the Netherlands one of the countries that takes part in the International Space Station (ISS) program?
+190	Name all crew members of the Apollo 15 mission.
+191	Name the children of Leonhard Euler (the mathematician).
+192	Name the parts that should generally be present in an SSD.
 196	On what date was the first human moon landing?
 197	On what day was the Hubble Space Telescope launched?
+205	The radius of Jupiter is how many kilometres?
 210	To which bone is the tibia connected?
+220	What age was Charles Darwin when he died?
+221	What area of the brain is important for language?
 223	What are parts of calculus?
 224	What are some studies within biology?
 225	What are symptoms of COVID-19?
@@ -52,6 +102,9 @@
 264	What are the two types of memory in human brain?
 265	What are the usual ingredients of a pancake?
 270	What chemical elements are part of a water molecule?
+272	What class of star is Betelgeuse?
+306	What fields are part of the physical sciences?
+308	What fields is the study of statistics part of?
 316	What is an alternative explanation to the Big Bang model of the evolution of the universe?
 323	What is another name for the species of sharks?
 330	What is fool's gold made of?
@@ -162,6 +215,7 @@
 447	What is the largest animal in the world?
 448	What is the largest planet in the Solar System?
 449	What is the location of Mercury?
+450	What is the longest a cow has ever lived?
 451	What is the longest bone in the human body?
 452	What is the lowest point on Earth?
 454	What is the mass (in grams) of a Nokia 3310?
@@ -204,6 +258,7 @@
 494	What is the number of products that the company Tesla has produced?
 496	What is the official name of the drug paracetamol?
 497	What is the official website of AMD?
+498	What is the oldest known living three?
 499	What is the opposite of a black hole?
 500	What is the opposite of a carnivore?
 501	What is the opposite of autosomal dominant?
@@ -216,6 +271,7 @@
 508	What is the origin of the word 'algorithm'?
 509	What is the perimeter of the earth?
 510	What is the place of birth of Albert Einstein?
+511	What is the planet that has the most natural satelites?
 512	What is the population of Chișinău?
 513	What is the population of the earth?
 515	What is the radius of earth?
@@ -257,14 +313,26 @@
 553	What is the thermal conductivity of water?
 554	What is the third planet from the sun?
 555	What is the top speed of a Bugatti Veyron?
+557	What is the Turing test also known as?
 558	What is the unit of power?
 559	What is the unit symbol of the speed of light?
 560	What is the water discharge of the river Rhine?
 561	What is the website of TED?
 562	What is the work location of a teacher?
 563	What is the worst-case time complexity of quicksort?
+568	What kind of allergy is a peanut allergy?
+571	What kind of waves are present during an earthquake?
+579	What parts are in a personal computer?
+584	What planets are in our Solar System?
+585	What planets are part of the inner Solar System?
 587	What's another name for the Turing test?
+590	What sort of infection is the common cold?
 592	What's the name of the science that studies the brain?
+597	What temperature is the sun at its core?
+599	What type of animal is an elephant?
+605	What units is the newton based on?
+608	What university was Alan Turing a student of when he published his doctoral thesis?
+611	What was madame Curie's official first name when she was born?
 612	What was Marie Curie's place of birth?
 614	What was the cause of the death of Julius Caesar?
 615	What was the Earth's population as of 1960?
@@ -280,14 +348,29 @@
 625	What were the occupations of Isaac Newton?
 649	When was Conway's game of life launched?
 668	When was the birthday of Charles Darwin?
+669	When was the Chernobyl disaster?
+672	When was the first computer made?
 673	When was the first flight of the Boeing 747?
+674	When was the first moon landing?
 676	When was the first nobel prize in physiology or medicine awarded?
+677	When was the first nuclear explosion tested?
+679	When was the first vaccine ever created?
 682	When was the inception of Linux?
+687	When was the mobile phone invented?
 690	When was the oldest university in the Netherlands founded?
+692	When was the programming language Python first released?
 704	When were the founders of Microsoft born?
 741	Which are the different types of Nobel prizes?
 742	Which are the uses of a rhinoceros horn?
+753	Which eclipse is it when the moon is between the sun and the earth?
+756	Which fruit are plantains often compared to?
+757	Which galaxy is the closest to us?
+764	Which mammal was "Animal of the Year" in Germany in 2005?
+767	Which members of the Bernoulli family were mathematicians?
 771	Which of the following is the active ingredient in Ritalin: methylphenidate or desloratadine?
+775	Which person is the term 'algorithm' named after?
+777	Which planet is the third planet from the Sun in the Solar System?
+789	Which telescope is part of the Goddard Space Flight Center?
 796	Who are the children of Albert Einstein?
 797	Who are the crew members of the Apollo 11?
 798	Who are the founders of Apple Inc.?
@@ -326,3 +409,4 @@
 904	Who were the crew members of the Apollo 11
 906	Who were the members of apollo 11?
 907	Who were the parents of Barack Obama
+923	WWhat parts of the Central Nervous System are there?

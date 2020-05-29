@@ -1,14 +1,8 @@
 26	How are mammals called in Latin?
-27	How are rainbows made?
 59	How is kinetic energy measured?
-60	How is sleep defined?
-62	How is velocity normally measured?
 141	How was the age of Earth determined?
-187	Milk is produced by what class of organism?
 188	Mycology is the study of?
-199	Penicilin was discovered by whom?
 202	Sugar is the same as?
-222	What are dogs used for?
 227	What are the chemical elements that Marie Curie discovered?
 230	What are the different nobel prize categories
 233	What are the five human senses?
@@ -20,7 +14,6 @@
 266	What are things a computer has?
 311	What is a black hole?
 312	What is a brain?
-313	What is accepted as the Japanese name for the Nintendo Switch?
 314	What is a chemical component?
 315	What is a computer chip made of?
 317	What is an astronomical object?
@@ -31,7 +24,6 @@
 322	What is an organ?
 324	What is a pandemic?
 325	What is a quantum dot?
-326	What is Archimedes known for?
 327	What is Avogadro constant?
 328	What is computational biology?
 329	What is DNA?
@@ -39,88 +31,39 @@
 332	What is lead-lead dating?
 333	What is leukemia?
 334	What is light?
-335	What is light made of?
-338	What is penicillin made of?
 339	What is planet the moon Titan orbiting?
 343	What is roentgen?
-344	What is studied by ornithology?
 345	What is the 90th element?
 382	What is the chemical formula of aspirin
 429	What is the fastest supercomputer?
-450	What is the longest a cow has ever lived?
 453	What is the Manhattan Project?
 474	What is the milky way?
 475	What is the mirror test?
 493	What is the newest chemical element?
 495	What is the numerical value of Pi
-498	What is the oldest known living three?
-511	What is the planet that has the most natural satelites?
 514	What is the quadratic formula?
 517	What is the retina?
 538	What is the suns mass?
 556	What is the Triple Point?
-557	What is the Turing test also known as?
 564	What is ultraviolet?
-565	What is used in the H&amp;E stain method?
 566	What is Wi-Fi?
 567	What is wikidata part of?
 610	What was Isaac Newton's profession?
-611	What was madame Curie's official first name when she was born?
 613	What was Stephen Hawking disability?
-646	When is the telephone invented?
 647	When was Alan Turing born?
-648	When was Albert Einstein born?
 650	When was Donald Trump born?
-651	When was Earth formed?
-652	When was Einstein born?
-653	When was gold discovered?
-654	When was Hangul invented?
 655	When was Isaac Newton born?
-656	When was Marie Curie born?
-657	When was mitochondrial DNA discovered?
-658	When was Myrtle Bachelder born?
-659	When was oxygen discovered?
-660	When was penicilin discovered?
-661	When was penicillin discovered?
-662	When was penicillin invented?
-663	When was pluto discovered?
-664	When was pluto disqualified as a planet?
-665	When was Pluto first discovered?
-666	When was plutonium discovered?
 667	When was Sir Isaac Newton born ?
-669	When was the Chernobyl disaster?
 670	When was the chip invented?
-671	When was the Doppler effect discovered?
-672	When was the first computer made?
-674	When was the first moon landing?
 675	When was the first Nobel prize in Physics rewarded?
-677	When was the first nuclear explosion tested?
-678	When was the first transistor constructed?
-679	When was the first vaccine ever created?
-680	When was the Higgs Boson discovered?
-681	When was the Hubble Telescope launched?
 683	When was the internal combustion engine invented?
-684	When was the International Space Station launched?
-685	When was the internet established?
-686	When was the mobile operating system 'android' made?
-687	When was the mobile phone invented?
-688	When was the Nobel Prize established?
 689	When was the nobel prize in physics introduced?
-691	When was the Philosophiae Naturalis Principia Mathematica written?
-692	When was the programming language Python first released?
-693	When was the telephone invented?
-694	When was the telescope invented?
-695	When was the transistor invented?
-696	When was the Turing Award instituted?
-697	When was tungsten first discovered?
-698	When was Uranus discovered?
 699	When was WiFi invented?
 700	When was Windows Microsoft released?
 701	When were axolotls discovered?
 702	When were personal computers invented?
 703	When were the first Nobel Prizes awarded?
 795	Who are Einstein's children?
-862	Who is considered the first computer programmer?
 863	Who is information retrieval studied by?
 864	Who is practicing science?
 870	Who is the first person to discover gravity?

@@ -1,0 +1,39 @@
+78	How many atoms are in formaldehyde?
+79	How many awards has Albert Einstein received?
+80	How many bits are in a byte?
+81	How many bones are in a human, adult body?
+82	How many bones does the average adult human skeleton contain?
+83	How many bones does the human body have?
+84	How many children did Charles Darwin have?
+85	How many chromosomes does one human have?
+86	How many colors are in a rainbow?
+87	How many constellations exist?
+88	How many countries did Einstein have citizenship of?
+89	How many countries have Dutch as official language?
+90	How many days are required for the Jupiter to complitly orbit around the sun?
+91	How many deaths were caused by COVID-19 as of 19 April 2020?
+92	How many groups are there in the periodic table?
+93	How many kilograms are in a yottagram
+94	How many kilometers in one light year?
+95	How many kilometers is a light-year?
+96	How many languages did Nikola Tesla speak
+97	How many laws of motion are there?
+98	How many laws of motion did Newton invent?
+99	How many megabyte are in a gigabyte?
+100	How many member states does CERN have?
+101	How many moons does Mars have?
+102	How many natural satelites does Earth have?
+103	How many nobel prizes has Marie Curie won?
+104	How many occupations did Isaac Newton have?
+105	How many oxygen atoms are in one molecule of glucose?
+106	How many parts does the brain stem has?
+107	How many people died of COVID-19 by 11 April 2020?
+108	How many people died of COVID-19 on 10 April 2020?
+109	How many people have been on the moon?
+110	How many people have been on the Moon?
+111	How many people have walked on the moon?
+112	How many people walked on the moon?
+113	How many planets are in the Solar system?
+114	How many planets away is Mars from the sun?
+115	How many protons are in the sodium?
+116	How many sides does a dodecagon have?

@@ -1,3 +1,4 @@
+199	Penicilin was discovered by whom?
 809	Who belonged Albert Einstein's brain to?
 810	Who built the Franeker planetarium?
 811	Who created the programming language PHP?
@@ -51,6 +52,7 @@
 859	Who invented the telephone?
 860	Who invented the television?
 861	Who invented the world wide web?
+862	Who is considered the first computer programmer?
 879	Who made the operating system android?
 880	Who or what was the Python programming language named after?
 881	Who owned Alan Turing teddy bear?
