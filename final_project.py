@@ -170,17 +170,20 @@ def count_question(parse, x, y, z):
     for token in parse:
         if token.pos_ == "NOUN" and first:
             x += token.lemma_ + " "
-            if token.dep_ != "compound": first = False
+            if token.dep_ != "compound":
+                first = False  # If first noun found second should be appended to y
 
         elif token.pos_ in ["PROPN", "NOUN"]:
             y += token.text + " "
+            if token.pos_ == "PROPN":
+                first = True  # If y is a proper noun al other nouns should be appended to x
 
     if x.strip() == "part": x = "has part"
     if x.strip() == "moon": x = "child astronomical body"
     return x, y, "COUNT"
 
 
-def get_x_y(question, print_info=True):
+def get_x_y(question, print_info=False):
     """
     Gets X and Y from questions using spacy
     :param question:    string
@@ -362,6 +365,7 @@ def create_and_fire_query(question):
             if x:
                 for i in range(3):  # Check top 3 property options
                     x_id = get_wiki_id(x, type="property", x=i)
+                    print("test", x_id, y_id)
                     if x_id and y_id:
                         query = get_query(x_id, y_id, z)
                         answer = get_answer(query)
