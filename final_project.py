@@ -119,7 +119,7 @@ def truefalse_question(parse, x, y, z):
 
 
 def is_description_question(parse):
-    if not is_xy_question(parse) and parse[1].lemma_ == "be":
+    if not is_xy_question(parse) and parse[1].lemma_ == "be" and not parse[1].dep_ == "auxpass":
         return True
     return False
 
@@ -135,6 +135,8 @@ def description_question(parse, x, y, z):
 
 def is_who_question(parse):
     if parse[0].lemma_ == "who":
+        return True
+    if parse[-2].lemma_ == "whom":
         return True
     return False
 
