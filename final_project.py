@@ -166,13 +166,17 @@ def is_count_question(parse):
 
 
 def count_question(parse, x, y, z):
+    first = True
     for token in parse:
-        if token.pos_ == "NOUN":
+        if token.pos_ == "NOUN" and first:
             x += token.lemma_ + " "
+            if token.dep_ != "compound": first = False
 
-        if token.pos_ in ["PROPN"]:
+        elif token.pos_ in ["PROPN", "NOUN"]:
             y += token.text + " "
 
+    if x.strip() == "part": x = "has part"
+    if x.strip() == "moon": x = "child astronomical body"
     return x, y, "COUNT"
 
 
