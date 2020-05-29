@@ -31,9 +31,6 @@ def is_where_question(parse):
 
 def where_question(parse, x, y, z):
     for token in parse:
-        print(token.head.lemma_)
-        if token.head.lemma_ == "be":
-            x = "location"
         # Place of birth:
         if token.head.lemma_ == "bear":
             x = "place of birth"
@@ -42,9 +39,36 @@ def where_question(parse, x, y, z):
             x = "place of death"
         if token.head.lemma_ == "study":
             x = "student of"
+        if token.head.lemma_ == "work":
+            x = "employer"
+        if token.head.lemma_ == "live":
+            x = "residence"
+        if token.head.lemma_ == "come":
+            x = "country of origin"
+        if token.head.lemma_ == "bury":
+            x = "place of burial"
+        if token.head.lemma_ == "headquarter":
+            x = "headquarters location"
+        if token.head.lemma_ == "educate":
+            x = "educated at"
+        if token.head.lemma_ == "make":
+            x = "country"
+        if token.head.lemma_ == "form":
+            x = "location of formation"
+        if token.head.lemma_ == "locate":
+            x = "anatomical location"
+        if token.head.lemma_ == "find":
+            x = "part of"
+        if token.head.lemma_ == "use":
+            x = "use"
+        if token.text == "birthplace":
+            x = "place of birth"
+        if token.head.lemma_ == "discover":
+            x = "location of discovery"
+        if token.text == "headquarters":
+            x = "headquarters location"
 
-        if token.dep_ in ["nsubj", "nsubjpass"] or (token.head.dep_ in ["nsubj", "compound"] and
-                                                    token.dep_ in ["amod", "compound"]):
+        if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ['PRON'] and token.lemma_ not in ["birthplace", "headquarters"]) or (token.head.dep_ in ["nsubj", "pobj", "compound"] and token.dep_ in ["amod", "compound"]) or token.dep_ in ['dobj'] or (token.dep_ in ['pobj'] and token.pos_ in ['PROPN']) or (token.lemma_ == "covid-19" and token.dep_ == "punct"):
             y += token.text + " "
     if not x: x = "location"
 
