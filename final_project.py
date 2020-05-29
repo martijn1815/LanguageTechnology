@@ -14,7 +14,7 @@ import spacy
 
 
 def print_token_info(token):
-    print("{0:<10}{1:<10}{2:<10}{3:<10}{4:<10}{5:<10}{6}".format(token.text,
+    print("{0:<12}{1:<14}{2:<12}{3:<12}{4:<18}{5:<18}{6}".format(token.text,
                                                                  token.lemma_,
                                                                  token.pos_,
                                                                  token.dep_,
@@ -159,7 +159,24 @@ def who_question(parse, x, y, z):
     return x, y, z
 
 
-def get_x_y(question, print_info=False):
+def is_count_question(parse):
+    if parse[0].lemma_ == "how" and parse[1].lemma_ == "many":
+        return True
+    return False
+
+
+def count_question(parse, x, y, z):
+    for token in parse:
+        if token.pos_ == "NOUN":
+            x += token.lemma_ + " "
+
+        if token.pos_ in ["PROPN"]:
+            y += token.text + " "
+
+    return x, y, "COUNT"
+
+
+def get_x_y(question, print_info=True):
     """
     Gets X and Y from questions using spacy
     :param question:    string
@@ -173,6 +190,13 @@ def get_x_y(question, print_info=False):
     z = ""
 
     if print_info:
+        print("{0:<12}{1:<14}{2:<12}{3:<12}{4:<18}{5:<18}{6}".format("token.text",
+                                                                     "token.lemma_",
+                                                                     "token.pos_",
+                                                                     "token.dep_",
+                                                                     "token.head.lemma_",
+                                                                     "token.head.dep_",
+                                                                     "token.subtree"))
         for token in parse:
             print_token_info(token)
 
@@ -200,6 +224,11 @@ def get_x_y(question, print_info=False):
         # Who question:
         if print_info: print("Who question")
         x, y, z = who_question(parse, x, y, z)
+
+    elif is_count_question(parse):
+        # Count question:
+        if print_info: print("Count question")
+        x, y, z = count_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     return x.strip(), y.strip(), z.strip()
@@ -248,9 +277,21 @@ def get_query(x, y, z):
     #print(x, y, z)
 
     if z:
-        query = "ASK WHERE {"
-        query += "wd:{0} (wdt:P279|wdt:P31|wdt:P21)/wdt:P279* wd:{1} .".format(y, z)
-        query += "}"
+        if z == "COUNT":
+            query = '''SELECT (COUNT (DISTINCT ?item) AS ?answerLabel)
+                       WHERE {'''
+            query += "wd:{0} wdt:{1} ?item.".format(y, x)
+            query += '''
+                     SERVICE wikibase:label {
+                        bd:serviceParam wikibase:language "en".
+                        }
+                     }
+                     '''
+
+        else:
+            query = "ASK WHERE {"
+            query += "wd:{0} (wdt:P279|wdt:P31|wdt:P21)/wdt:P279* wd:{1} .".format(y, z)
+            query += "}"
 
     else:
         query = '''
@@ -318,12 +359,16 @@ def create_and_fire_query(question):
                 for i in range(3):  # Check top 3 property options
                     x_id = get_wiki_id(x, type="property", x=i)
                     if x_id and y_id:
-                        query = get_query(x_id, y_id, None)
+                        query = get_query(x_id, y_id, z)
                         answer = get_answer(query)
-                        if answer:  # If an answer is found return it
-                            return answer
+                        if z == "COUNT":
+                            if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
+                                return answer
+                        else:
+                            if answer:  # If an answer is found return it
+                                return answer
 
-            elif z:
+            elif z and z != "COUNT":
                 for i in range(3):  # Check top 3 property options
                     z_id = get_wiki_id(z, type="entity", x=i)
                     if y_id and z_id:
