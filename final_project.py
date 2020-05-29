@@ -32,41 +32,50 @@ def is_where_question(parse):
 def where_question(parse, x, y, z):
     for token in parse:
         # Place of birth:
-        if token.head.lemma_ == "bear":
+        if token.head.lemma_ == "bear" or token.text == "birthplace":
             x = "place of birth"
         # Place of death:
         if token.head.lemma_ == "die":
             x = "place of death"
+        # Studied at
         if token.head.lemma_ == "study":
             x = "student of"
+        # Work for
         if token.head.lemma_ == "work":
             x = "employer"
+        # Live at
         if token.head.lemma_ == "live":
             x = "residence"
+        # Come from
         if token.head.lemma_ == "come":
             x = "country of origin"
+        # Place of burying
         if token.head.lemma_ == "bury":
             x = "place of burial"
-        if token.head.lemma_ == "headquarter":
+        # Location of Headquarters
+        if token.head.lemma_ == "headquarter" or token.text == "headquarters":
             x = "headquarters location"
+        # Education
         if token.head.lemma_ == "educate":
             x = "educated at"
+        # Place made
         if token.head.lemma_ == "make":
             x = "country"
+        # Forming location
         if token.head.lemma_ == "form":
             x = "location of formation"
+        # Place in body
         if token.head.lemma_ == "locate":
             x = "anatomical location"
+        # Place in body
         if token.head.lemma_ == "find":
             x = "part of"
+        # Used for
         if token.head.lemma_ == "use":
             x = "use"
-        if token.text == "birthplace":
-            x = "place of birth"
+        # Place of disovery
         if token.head.lemma_ == "discover":
             x = "location of discovery"
-        if token.text == "headquarters":
-            x = "headquarters location"
 
         if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ['PRON'] and token.lemma_ not in ["birthplace", "headquarters"]) or (token.head.dep_ in ["nsubj", "pobj", "compound"] and token.dep_ in ["amod", "compound"]) or token.dep_ in ['dobj'] or (token.dep_ in ['pobj'] and token.pos_ in ['PROPN']) or (token.lemma_ == "covid-19" and token.dep_ == "punct"):
             y += token.text + " "
