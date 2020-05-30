@@ -4,7 +4,7 @@ File:       final_project.py
 Authors:    Martijn E.N.F.L. Schendstok (s2688174)
             Jannick Akkermans (s3429075)
             Niels
-            Mariska
+            Mariska de Vries (s3483630)
 Date:       26 May 2020
 """
 
@@ -82,6 +82,12 @@ def where_question(parse, x, y, z):
     if not x: x = "location"
 
     return x, y, z
+
+
+def is_when_question(parse):
+    if parse[0].lemma_ == "when":
+        return True
+    return False
 
 
 def is_xy_question(parse):
@@ -244,6 +250,10 @@ def get_x_y(question, print_info=False):
         # Where question:
         if print_info: print("Where question")
         x, y, z = where_question(parse, x, y, z)
+
+    elif is_when_question(parse):
+        # When question:
+        if print_info: print("When question")
 
     elif is_xy_question(parse):
         # X of Y question
