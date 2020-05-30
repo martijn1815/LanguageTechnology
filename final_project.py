@@ -90,6 +90,43 @@ def is_when_question(parse):
     return False
 
 
+def when_question(parse, x, y, z):
+    for token in parse:
+        if token.pos_ == "VERB":
+            if token.lemma_ in ["invent","discover","construct"]:
+                x = "time of discovery or invention"
+
+            if token.lemma_ == "bear":
+                x = "date of birth"
+
+            if token.lemma_ == "die":
+                x = "date of death"
+
+            if token.lemma_ == "begin":
+                x = "start time"
+
+            if token.lemma_ == "end":
+                x = "end time"
+
+            if token.lemma_ in ["happen","occur"]:
+                x = "point in time"
+
+            if token.lemma_ not in ["invent","discover","construct","bear","die","happen","occur","begin","end",]:
+                x = "inception"
+
+        if token.pos_ in ["ADJ","NOUN", "PROPN"] and token.lemma_ != "first":
+            if token.lemma_ == "birthday":
+                x = "date of birth"
+
+            else:
+                y += token.text + " "
+
+    if x == "":
+        x = "point in time"
+
+    return x, y, z
+
+
 def is_xy_question(parse):
     if (parse[0].head.lemma_ in ["be", "move", "name"] and parse[0].head.dep_ == "ROOT") or (parse[1].head.lemma_ in ["be", "move"] and parse[1].head.dep_ == "ROOT"):
         prep = False
@@ -254,6 +291,7 @@ def get_x_y(question, print_info=False):
     elif is_when_question(parse):
         # When question:
         if print_info: print("When question")
+        x, y, z = when_question(parse, x, y, z)
 
     elif is_xy_question(parse):
         # X of Y question
