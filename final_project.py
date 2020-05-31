@@ -30,7 +30,19 @@ def is_where_question(parse):
 
 
 def where_question(parse, x, y, z):
+    in_status = False
+    earth_status = False
+    c = 0
     for token in parse:
+        if c == 1:
+            if token.lemma_ == "in":
+                in_status = True
+        c += 1
+        if token.lemma_ == "earth" and token.head.lemma_ == "on":
+            earth_status = True
+            print(token.text, token.head.text, earth_status)
+        if token.head.lemma_ == "be":
+                x = ['recommended unit of measurement', 'anatomical location', 'part of', 'location']            
         # Place of birth:
         if token.head.lemma_ == "bear" or token.text == "birthplace":
             x = "place of birth"
@@ -48,7 +60,7 @@ def where_question(parse, x, y, z):
             x = "residence"
         # Come from
         if token.head.lemma_ == "come":
-            x = "country of origin"
+            x = ["country of origin", "endemic to"]
         # Place of burying
         if token.head.lemma_ == "bury":
             x = "place of burial"
@@ -77,8 +89,17 @@ def where_question(parse, x, y, z):
         if token.head.lemma_ == "discover":
             x = "location of discovery"
 
-        if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ['PRON'] and token.lemma_ not in ["birthplace", "headquarters"]) or (token.head.dep_ in ["nsubj", "pobj", "compound"] and token.dep_ in ["amod", "compound"]) or token.dep_ in ['dobj'] or (token.dep_ in ['pobj'] and token.pos_ in ['PROPN']) or (token.lemma_ == "covid-19" and token.dep_ == "punct"):
+        if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ['PRON'] and token.lemma_ not in ["birthplace", "headquarters"]) or (token.head.dep_ in ["nsubj", "pobj", "compound"] and token.dep_ in ["amod", "compound"]) or token.dep_ in ['dobj'] or (token.dep_ in ['pobj'] and token.pos_ in ['PROPN']) or (token.lemma_ == "covid-19" and token.dep_ == "punct") or (in_status and token.dep_ == "attr") or (in_status and token.head.dep_ == "attr" and token.dep_ == 'amod'):
             y += token.text + " "
+    if earth_status:
+        y = "earth"
+        x = ""
+        x_t = ""
+        for token in parse:
+            if (token.pos_ == "NOUN" and token.dep_ in ["nsubj", "attr"]) or (token.head.pos_ == "NOUN" and token.head.dep_ in ["nsubj", "attr"] and token.dep_ == "amod"):
+                x_t += token.lemma_ + " "
+        if "temperature" in x_t and ("hot" in x_t or "maximum" in x_t or "high" in x_t):
+            x = "maximum temperature record"
     if not x: x = "location"
 
     return x, y, z
@@ -319,6 +340,9 @@ def get_x_y(question, print_info=False):
         x, y, z = count_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
+    print(type(x))
+    if type(x) == list:
+        return x, y.strip(), z.strip()
     return x.strip(), y.strip(), z.strip()
 
 
@@ -445,17 +469,31 @@ def create_and_fire_query(question):
             y_id = get_wiki_id(y, type="entity", x=j)
             if x:
                 for i in range(3):  # Check top 3 property options
-                    x_id = get_wiki_id(x, type="property", x=i)
-                    print("test", x_id, y_id)
-                    if x_id and y_id:
-                        query = get_query(x_id, y_id, z)
-                        answer = get_answer(query)
-                        if z == "COUNT":
-                            if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
-                                return answer
-                        else:
-                            if answer:  # If an answer is found return it
-                                return answer
+                    if type(x) == list:
+                        for xx in x:
+                            x_id = get_wiki_id(xx, type="property", x=i)
+                            print("test", x_id, y_id)
+                            if x_id and y_id:
+                                query = get_query(x_id, y_id, z)
+                                answer = get_answer(query)
+                                if z == "COUNT":
+                                    if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
+                                        return answer
+                                else:
+                                    if answer:  # If an answer is found return it
+                                        return answer
+                    else:
+                        x_id = get_wiki_id(x, type="property", x=i)
+                        print("test", x_id, y_id)
+                        if x_id and y_id:
+                            query = get_query(x_id, y_id, z)
+                            answer = get_answer(query)
+                            if z == "COUNT":
+                                if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
+                                    return answer
+                            else:
+                                if answer:  # If an answer is found return it
+                                    return answer
 
             elif z and z != "COUNT":
                 for i in range(3):  # Check top 3 property options
