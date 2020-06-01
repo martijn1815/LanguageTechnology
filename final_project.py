@@ -161,7 +161,9 @@ def is_xy_question(parse):
 
 
 def xy_question(parse, x, y, z):
-    translation_dict = {'big ': 'diameter'}
+    translation_dict = {'big ': ['diameter', 'mass'],
+                        'deep ': 'elevation',
+                        'dense ': 'density'}
     for token in parse:
 
         if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
@@ -170,23 +172,30 @@ def xy_question(parse, x, y, z):
             x += token.lemma_ + " "
         elif token.dep_ in ["attr", "pcomp", "acomp"] and token.pos_ in ["NOUN", "ADJ"] and token.head.lemma_ in ["be", "at"] and x == '':
             x += token.lemma_ + " "
+        elif token.dep_ == "nsubj" and token.head.lemma_ in ['be', 'at'] and y == '':
+            y += token.text + " "
 
         if (token.dep_ == "pobj" and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET"]):
             y += token.text + " "
-        elif token.dep_ == "poss" or (token.head.dep_ == "poss" and
+        elif (token.dep_ == "poss" and token.pos_ != "DET") or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
                                       token.pos_ not in ["PRON", "DET"]) and y == '':
             y += token.text + " "
 
-        if token.dep_ == "compound" and token.head.dep_ == "nsubj":
+        if token.dep_ in ["compound", "amod"] and token.head.dep_ == "nsubj":
             y += token.text + " " + token.head.text + " "
         elif token.dep_ == "compound" and token.head.dep_ == 'dobj':
             x += token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == "nummod" and token.head.dep_ == "nmod":
             y += token.head.text + " " + token.text + " "
+
+        if token.text == 'surface':
+            x = "area" + " "
+        elif token.text == 'maximally':
+            z = "MAXIMUM"
 
     try:
         x = translation_dict[x]
@@ -399,6 +408,17 @@ def get_query(x, y, z):
                         }
                      }
                      '''
+        elif z == "MAXIMUM":
+            query = '''SELECT (MAX(?item) as ?answerLabel)
+                                   WHERE {'''
+            query += "wd:{0} wdt:{1} ?item.".format(y, x)
+            query += '''
+                                 SERVICE wikibase:label {
+                                    bd:serviceParam wikibase:language "en".
+                                    }
+                                 }
+                                 '''
+            query += '''ORDER BY ?item'''
 
         else:
             query = "ASK WHERE {"

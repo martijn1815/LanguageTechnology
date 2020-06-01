@@ -3,6 +3,7 @@
 6	Are sharks mammals?
 7	Are surgery and mutilation the same thing?
 8	Are tomatoes vegetables or fruit?
+15	Botanically, is tomato a fruit?
 171	Is a fork a weapon?
 172	Is a platypus a mammal?
 173	Is a shark a fish or an animal?
