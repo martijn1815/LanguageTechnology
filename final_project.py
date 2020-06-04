@@ -3,7 +3,7 @@
 File:       final_project.py
 Authors:    Martijn E.N.F.L. Schendstok (s2688174)
             Jannick Akkermans (s3429075)
-            Niels
+            Niels Westeneng (s3469735)
             Mariska de Vries (s3483630)
 Date:       26 May 2020
 """
@@ -276,6 +276,33 @@ def who_question(parse, x, y, z):
     return x, y, z
 
 
+def is_how_question(parse):
+    if parse[0].lemma_ == "how" and parse[1].lemma_ != "many":
+        return True
+    return False
+
+
+def how_question(parse, x, y, z):
+    for token in parse:
+        if token.head.lemma_ == "die":
+            x = "manner of death"
+        if token.head.lemma_ == "weigh":
+            x = "mass"
+        if token.head.lemma_ == "call":
+            x = "practiced by"
+        if token.head.lemma_ == "far":
+            x = "distance from Earth"
+        if token.head.lemma_ == "run":
+            x = "speed"
+        if token.head.lemma_ == "boil":
+            x = "boiling point"
+
+
+        if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ["ADJ", "PRON", "SCONJ"]) or (token.dep_ in ["compound", "amod"] and token.head.dep_ == "nsubj" and token.head.pos_ != "ADJ") or (token.dep_ == "dobj" and token.pos_ != "PRON"):
+            y += token.text + " " 
+    return x,y,z
+
+
 def is_count_question(parse):
     if parse[0].lemma_ == "how" and parse[1].lemma_ == "many":
         return True
@@ -358,6 +385,11 @@ def get_x_y(question, print_info=False):
         # Count question:
         if print_info: print("Count question")
         x, y, z = count_question(parse, x, y, z)
+    
+    elif is_how_question(parse):
+        # How question:
+        if print_info: print("How question")
+        x, y, z = how_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     print(type(x))
