@@ -174,7 +174,7 @@ def xy_question(parse, x, y, z):
 
         if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
                                        token.dep_ in ["amod", "compound"]))
-                and token.pos_ not in ["PRON", "DET"]) and x == '':
+                and token.pos_ not in ["PRON", "DET", "ADJ"]) and x == '':
             x += token.lemma_ + " "
         elif token.dep_ in ["attr", "pcomp", "acomp", "advmod"] and token.pos_ in ["NOUN", "ADJ", "ADV"] and token.head.lemma_ in ["be", "at"] and x == '':
             x += token.lemma_ + " "
@@ -185,21 +185,31 @@ def xy_question(parse, x, y, z):
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET"]):
             y += token.lemma_ + " "
-        elif (token.dep_ == "poss" and token.pos_ != "DET") or (token.head.dep_ == "poss" and
+        elif (token.dep_ == "poss" and token.pos_ not in ["DET", "PROPN"]) or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
                                       token.pos_ not in ["PRON", "DET"]) and y == '':
             y += token.lemma_ + " "
 
         if token.dep_ in ["compound", "amod"] and token.head.dep_ == "nsubj" and y == '':
             y += " ".join([tok.text for tok in token.head.subtree if tok.text not in ['-']][1:])
-        elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr']:
+        elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.dep_ == "nummod" and token.head.dep_ == "nmod":
+        if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr"]:
             y += token.head.text + " " + token.lemma_ + " "
+
+        if token.pos_ == "ADJ" and token.head.pos_ == "NOUN":
+            y += token.text + " " + token.head.lemma_ + " "
+
+        if token.pos_ == "PROPN" and token.head.pos_ == "ADP" and token.head.head.pos_ == "NOUN":
+            y = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
         if token.text == 'surface':
             x = "area" + " "
+        elif token.text == 'invented':
+            x = "time of discovery or invention" + " "
+        elif token.text in ["placed", "located"]:
+            x = "part of" + " "
         elif token.text == 'maximally':
             z = "MAXIMUM"
 
