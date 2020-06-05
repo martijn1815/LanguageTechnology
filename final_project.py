@@ -299,17 +299,32 @@ def how_question(parse, x, y, z):
         if token.head.lemma_ == "weigh":
             x = "mass"
         if token.head.lemma_ == "call":
-            x = "practiced by"
+            x = ["practiced by", "Commons category", "has part"]
         if token.head.lemma_ == "far":
             x = "distance from Earth"
         if token.head.lemma_ == "run":
             x = "speed"
         if token.head.lemma_ == "boil":
             x = "boiling point"
+        if token.head.lemma_ == "emit":
+            x = "luminosity"
+        if token.head.lemma_ == "embody":
+            x = "embodied energy"
+        if token.lemma_ == "old":
+            x = "highest observed lifespan"
+        if token.head.lemma_ == "incubate" and token.lemma_ == "maximally":
+            x = "maximal incubation period in humans"
+        if token.lemma_ in ["orbit", "revolution", "revolve", "rotation"]:
+            x = "orbital period"
+        if token.head.lemma_ == "measure":
+            x = "recommended unit of measurement"
+        if token.head.lemma_ == "define":
+            x = ''
+        if token.head.lemma_ == "describe" and token.lemma_ == "shape":
+            x = "shape"
+        if token.dep_ == "nsubj" and token.head.dep_ == "ROOT":
+            y += token.text + " "
 
-
-        if (token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ not in ["ADJ", "PRON", "SCONJ"]) or (token.dep_ in ["compound", "amod"] and token.head.dep_ == "nsubj" and token.head.pos_ != "ADJ") or (token.dep_ == "dobj" and token.pos_ != "PRON"):
-            y += token.text + " " 
     return x,y,z
 
 
