@@ -179,10 +179,14 @@ def xy_question(parse, x, y, z):
                         'animal protection status ': 'IUCN conservation status',
                         'average period ': 'gestation period',
                         'big mountain ': 'highest point',
+                        'high mountain ': 'highest point',
                         'building block ': 'has part',
                         'centre ': 'has part',
                         'conversion ': 'conversion to SI unit',
-                        'distance ': 'distance from earth'}
+                        'distance ': 'distance from earth',
+                        'estimate diameter ': 'diameter',
+                        'high point ': 'highest point',
+                        'low point ': 'lowest point'}
 
     for token in parse:
 
@@ -216,8 +220,8 @@ def xy_question(parse, x, y, z):
         elif token.dep_ == "compound" and token.head.dep_ in ["pobj", "attr"]:
             y = token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr"]:
-            y += token.head.text + " " + token.lemma_ + " "
+        if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"]:
+            y = token.head.text + " " + token.lemma_ + " "
 
         if token.pos_ == "ADJ" and token.head.pos_ == "NOUN" and token.head.head.pos_ == "NOUN":
             x += token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
@@ -235,7 +239,7 @@ def xy_question(parse, x, y, z):
             y = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
         if token.dep_ == 'compound' and token.head.dep_ == 'compound' and token.head.head.dep_ == 'nsubj' and x == '':
             x = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
-        if token.lemma_ == 'birth' and token.head.lemma_ == 'of' and token.head.head.lemma_ == 'date':
+        if token.lemma_ in ['birth', 'work'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field']:
             x = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
         if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj':
@@ -279,6 +283,8 @@ def xy_question(parse, x, y, z):
             y = 'neptune'
         elif token.text == 'Moon':
             y = 'moon'
+        elif token.text == 'CERN':
+            y = 'CERN'
 
         if y == "Moon " and x == "far ":
             x = "distance from Earth" + " "
