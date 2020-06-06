@@ -299,7 +299,7 @@ def how_question(parse, x, y, z):
         if token.head.lemma_ == "weigh":
             x = "mass"
         if token.head.lemma_ == "call":
-            x = ["practiced by", "Commons category", "has part"]
+            x = ["practiced by", "has part", "Commons category"]
         if token.head.lemma_ == "far":
             x = "distance from Earth"
         if token.head.lemma_ == "run":
@@ -322,8 +322,10 @@ def how_question(parse, x, y, z):
             x = ''
         if token.head.lemma_ == "describe" and token.lemma_ == "shape":
             x = "shape"
-        if token.dep_ == "nsubj" and token.head.dep_ == "ROOT":
-            y += token.text + " "
+        
+
+        if (token.dep_ in ["nsubj", "nsubjpass"] and token.head.dep_ == "ROOT" and token.pos_ != "PRON") or (token.dep_ in ["pobj", "dobj"] and token.pos_ != "PRON" and token.head.dep_ not in ["ROOT", "advcl"]) or (token.dep_ == "nsubj" and token.pos_ == "PROPN") or (token.head.dep_ in ["nsubj", "nsubjpass"] and token.head.head.dep_ == "ROOT" and token.head.pos_ != "PRON" and token.dep_ == "compound"):
+            y += token.lemma_ + " "
 
     return x,y,z
 
