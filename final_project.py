@@ -186,27 +186,41 @@ def xy_question(parse, x, y, z):
                         'distance ': 'distance from earth',
                         'estimate diameter ': 'diameter',
                         'high point ': 'highest point',
-                        'low point ': 'lowest point'}
+                        'low point ': 'lowest point',
+                        'recent value ': 'numeric value',
+                        'origin ': 'named after',
+                        'rotational period ': 'orbital period',
+                        'salary ': 'net worth',
+                        'scientific name ': ['said to be the same as', 'Commons category'],
+                        'unit conversion ': 'conversion to SI unit',
+                        'study ': 'studied by',
+                        'symbolic element ': 'element symbol',
+                        'top speed ': 'speed',
+                        'unit ': 'recommended unit of measurement',
+                        'water discharge ': 'discharge',
+                        'kind ': 'subclass of',
+                        'member ': ['has part', 'crew member'],
+                        'doctorial advisor ': 'doctoral advisor'}
 
     for token in parse:
 
         if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
                                        token.dep_ in ["amod", "compound"]))
-                and token.pos_ not in ["PRON", "DET", "ADJ"]) and x == '':
+                and token.pos_ not in ["PRON", "DET", "ADJ"]) and token.text not in ['name', 'number'] and x == '':
             x += token.lemma_ + " "
         elif token.dep_ in ["attr", "pcomp", "acomp", "advmod"] and token.pos_ in ["NOUN", "ADJ", "ADV"] and token.head.lemma_ in ["be", "at"] and x == '':
             x += token.lemma_ + " "
-        elif token.dep_ == "nsubj" and token.head.lemma_ in ['be', 'at'] and token.pos_ not in ['PRON', 'DET'] and token.lemma_ not in x and y == '':
+        elif token.dep_ == "nsubj" and token.head.lemma_ in ['be', 'at'] and token.pos_ not in ['PRON', 'DET'] and token.text not in ['name', 'number'] and token.lemma_ not in x and y == '':
             y += token.lemma_ + " "
         elif token.dep_ == "pobj" and token.pos_ == 'DET' and y == '':
             y += token.lemma_ + " "
 
-        if (token.dep_ == "pobj" and token.pos_ in ['PROPN', 'NOUN'] and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
+        if (token.dep_ in ["pobj", "appos", "dobj", "attr"] and token.pos_ in ['PROPN', 'NOUN']  and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET", "ADJ"]):
             if x == '':
                 x += token.lemma_ + " "
-            else:
+            elif y == '' and token.lemma_ not in x:
                 y += token.lemma_ + " "
         elif (token.dep_ == "poss" and token.pos_ not in ["DET", "PROPN"]) or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
@@ -217,7 +231,7 @@ def xy_question(parse, x, y, z):
             y += token.lemma_ + " "
         elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
-        elif token.dep_ == "compound" and token.head.dep_ in ["pobj", "attr"]:
+        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x:
             y = token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"]:
@@ -228,27 +242,35 @@ def xy_question(parse, x, y, z):
 
         if token.pos_ == "ADJ" and token.head.pos_ == "NOUN":
             if x == '':
-                x += token.lemma_ + " " + token.head.lemma_ + " "
-            elif y == '':
+                if token.text in ['sixth']:
+                    x += token.head.lemma_ + " "
+                    z = "SIXTH"
+                else:
+                    x += token.lemma_ + " " + token.head.lemma_ + " "
+            elif y == '' and token.lemma_ not in x:
                 y += token.text + " " + token.head.lemma_ + " "
 
-        if token.dep_ == 'poss' and token.head.dep_ == 'nsubj':
+        if token.dep_ == 'poss' and token.head.dep_ == 'nsubj' and y == '':
             y += token.lemma_ + " "
 
-        if token.pos_ == "PROPN" and token.head.pos_ == "ADP" and token.head.head.pos_ == "NOUN" and y == '':
+        if token.pos_ in ["PROPN"] and token.head.pos_ == "ADP" and token.head.head.pos_ == "NOUN" and y == '':
             y = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
         if token.dep_ == 'compound' and token.head.dep_ == 'compound' and token.head.head.dep_ == 'nsubj' and x == '':
             x = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
-        if token.lemma_ in ['birth', 'work'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field']:
+        if token.lemma_ in ['birth', 'work', 'death'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause']:
             x = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
         if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj':
             x = token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.text == 'surface':
-            x = "area" + " "
-        elif token.text == 'invented':
-            x = "time of discovery or invention" + " "
+        if token.dep_ in ['pobj'] and token.head.dep_ in ['acomp'] and y == '':
+            y += token.lemma_ + " " + token.head.lemma_ + " "
+
+        if token.dep_ in ['appos', 'nsubjpass']:
+            y = token.lemma_
+
+        if token.text == 'invented':
+            x = ["time of discovery or invention", "inception"]
         elif token.text in ["placed", "located"]:
             x = "part of" + " "
         elif token.text == 'children':
@@ -259,8 +281,12 @@ def xy_question(parse, x, y, z):
             x = 'date of death'
         elif token.text == 'moons':
             x = 'moon'
+        elif token.text == 'products':
+            x = 'product or material produced'
         elif token.text == 'maximally':
             z = "MAXIMUM"
+        elif token.text == 'number':
+            z = "COUNT"
         elif token.text == 'triangles':
             y = 'triangle'
         elif token.text == 'bronze':
@@ -285,19 +311,39 @@ def xy_question(parse, x, y, z):
             y = 'moon'
         elif token.text == 'CERN':
             y = 'CERN'
+        elif token.text == 'Avogadro':
+            y = 'Avogadro constant'
+        elif token.text == 'paracetamol':
+            y = 'paracetamol'
+        elif token.text == 'sun':
+            y = 'sun'
+        elif token.text == 'elephant':
+            y = 'elephant'
+        elif token.text == 'Nicolas':
+            y = 'Nicolas Tesla'
+        elif token.text == 'Isaac':
+            y = 'Isaac Newton'
 
         if y == "Moon " and x == "far ":
             x = "distance from Earth" + " "
         elif y in ['light year', 'astronomical unit']:
             x = 'conversion to SI unit' + " "
         elif x == 'type ':
-            x = 'followed by'
+            x = ['followed by', 'subclass of']
         elif y == 'Inner Solar ':
             y = 'Inner Solar System'
         elif y == 'horsepower ':
             y = 'Metric horsepower'
         elif y == 'liquid potassium ':
             y = 'potassium'
+        elif x == 'surface ':
+            x = "area" + " "
+        elif y == 'discharge of Rhine ':
+            y = 'Rhine'
+        elif y == 'Wide web ':
+            y = 'World Wide web'
+        elif y == 'Pythagoras ':
+            y = 'Pythagoras theorem'
 
         if 'definition' in x:
             x = ''
@@ -305,6 +351,8 @@ def xy_question(parse, x, y, z):
     try:
         x = translation_dict[x]
     except KeyError:
+        pass
+    except TypeError:
         pass
 
     return x, y, z
