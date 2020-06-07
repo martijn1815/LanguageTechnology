@@ -1,0 +1,101 @@
+X-of-Y questions not yet working correctly:
+
+348	What is the African penguin called in its home country?
+349	What is the amount of degrees in Celsius at which glucose melts?
+376	What is the cause of SARS-CoV-2?
+377	What is the center temperature of the Sun?
+378	What is the centre of an atom called?
+399	What is the deepest part of the Earth's oceans named?
+401	What is the definition of mind-body dualism?
+403	What is the density of liquid potassium?
+404	What is the density of water at 0 degree Celsius?
+405	What is the density of water at 75 degrees Celcius?
+406	What is the diameter of carbon fiber?
+411	What is the distance between earth and its closest celestial body?
+416	What is the Dutch word for light bulb?
+418	What is the electrical charge of a molecule?
+427	What is the equation of photosenthesis?
+428	What is the estimated diameter of the Solar System in astronomical units?
+431	What is the first law of Newton?
+433	What is the formula of the mass–energy equivalence?
+434	What is the fourth planet from the sun?
+435	What is the fourth planet in the solar system?
+436	What is the fourth planet in the Solar System?
+438	What is the given name of the patron saint of the internet?
+444	What is the highest point on earth, measured from the geographical center?
+446	What is the hottest temperature recorded on earth's surface?
+447	What is the largest animal in the world?
+448	What is the largest planet in the Solar System?
+450	What is the longest a cow has ever lived?
+451	What is the longest bone in the human body?
+459	What is the mass of the chemical compound called Voltage?
+465	What is the mass of the whole solar system?
+478	What is the more common name for the Georgian Planet?
+479	What is the most abundant gas in the earth's atmosphere?
+481	What is the name of lowest layer of the atmosphere?
+482	What is the name of the biggest planet in our Solar system?
+483	What is the name of the biggest planet in our Solar System?
+484	What is the name of the chemical element with atomic number of 108?
+485	What is the name of the chemical structure of paracetamol?
+486	What is the name of the intergovernmental organisation dedicated to the exploration of space, which was founded by Belgium, Denmark, France, Germany, Italy, the Netherlands, Spain, Sweden, the United Kingdom and Switzerland?
+487	What is the name of the light-sensitive tissue layer inside the eye?
+488	What is the name of the science that is devoted to the study of fish?
+489	What is the name of the sixth moon of Saturn?
+490	What is the name of the study of biological cells?
+491	What is the name of the syndrome that makes patients think that their loved ones are replaced by identical impostor?
+492	What is the nationality of the creator of the Python programming language?
+496	What is the official name of the drug paracetamol?
+498	What is the oldest known living three?
+507	What is the order of planets from the sun?
+511	What is the planet that has the most natural satelites?
+523	What is the second planet in the Solar System?
+524	What is the seventh planet from the Sun?
+529	What is the solar mass of the solar system?
+534	What is the speed of sound in alcohol?
+535	What is the standard base unit of electric current?
+537	What is the subclass of the formula for Schrödinger's Equation?
+546	What is the temperature in degrees Celcius at which ethanol boils?
+548	What is the temperature of the center of the sun?
+549	What is the temperature of the centre of the sun?
+552	What is the tempreture exerted by the sun, at its core (center)?
+554	What is the third planet from the sun?
+557	What is the Turing test also known as?
+562	What is the work location of a teacher?
+563	What is the worst-case time complexity of quicksort?
+571	What kind of waves are present during an earthquake?
+585	What planets are part of the inner Solar System?
+587	What's another name for the Turing test?
+597	What temperature is the sun at its core?
+605	What units is the newton based on?
+608	What university was Alan Turing a student of when he published his doctoral thesis?
+611	What was madame Curie's official first name when she was born?
+617	What was the first mission with humans to land on the Moon?
+622	What was the topic of Stephen Hawking's doctoral thesis?
+624	What were the countries of citizen ship of Marie Curie?
+649	When was Conway's game of life launched?
+673	When was the first flight of the Boeing 747?
+674	When was the first moon landing?
+677	When was the first nuclear explosion tested?
+741	Which are the different types of Nobel prizes?
+742	Which are the uses of a rhinoceros horn?
+753	Which eclipse is it when the moon is between the sun and the earth?
+757	Which galaxy is the closest to us?
+764	Which mammal was "Animal of the Year" in Germany in 2005?
+767	Which members of the Bernoulli family were mathematicians?
+775	Which person is the term 'algorithm' named after?
+777	Which planet is the third planet from the Sun in the Solar System?
+789	Which telescope is part of the Goddard Space Flight Center?
+803	Who are the inventors of the A* search algorithm?
+807	Who are the Nobel prize winners in chemistry in 2016?
+865	Who is the author of the article "Computing Machinery and Intelligence"?
+868	Who is the drummer of Linkin Park?
+869	Who is the father of mathematics?
+888	Who was the developer of the theory of relativity?
+889	Who was the discoverer of the theory of general relativity?
+890	Who was the doctorial advisor of Isaac Newton?
+892	Who was the first dog in space?
+894	Who was the first human in space?
+895	Who was the first person to walk on the moon?
+896	Who was the first whistleblower in China on Covid-19?
+899	Who was the inventor of the first law of thermodynamics?
+923	WWhat parts of the Central Nervous System are there?
