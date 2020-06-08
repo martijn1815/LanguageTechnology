@@ -72,9 +72,6 @@ X-of-Y questions not yet working correctly:
 617	What was the first mission with humans to land on the Moon?
 622	What was the topic of Stephen Hawking's doctoral thesis?
 624	What were the countries of citizen ship of Marie Curie?
-649	When was Conway's game of life launched?
-673	When was the first flight of the Boeing 747?
-674	When was the first moon landing?
 677	When was the first nuclear explosion tested?
 741	Which are the different types of Nobel prizes?
 742	Which are the uses of a rhinoceros horn?

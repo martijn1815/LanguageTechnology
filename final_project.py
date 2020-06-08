@@ -232,7 +232,9 @@ def xy_question(parse, x, y, z):
                         'water discharge ': 'discharge',
                         'kind ': 'subclass of',
                         'member ': ['has part', 'crew member'],
-                        'doctorial advisor ': 'doctoral advisor'}
+                        'doctorial advisor ': 'doctoral advisor',
+                        'planet ': 'child astronomical body',
+                        'moons ': 'child astronomical body'}
 
     for token in parse:
 
@@ -263,7 +265,7 @@ def xy_question(parse, x, y, z):
             y += token.lemma_ + " "
         elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
-        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x:
+        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x:
             y = token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"]:
@@ -274,13 +276,13 @@ def xy_question(parse, x, y, z):
 
         if token.pos_ == "ADJ" and token.head.pos_ == "NOUN":
             if x == '':
-                if token.text in ['sixth']:
+                if token.text in ['sixth', 'seventh', 'third', 'second', 'fourth']:
                     x += token.head.lemma_ + " "
-                    z = "SIXTH"
+                    z = token.text
                 else:
                     x += token.lemma_ + " " + token.head.lemma_ + " "
             elif y == '' and token.lemma_ not in x:
-                y += token.text + " " + token.head.lemma_ + " "
+                y += token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == 'poss' and token.head.dep_ == 'nsubj' and y == '':
             y += token.lemma_ + " "
@@ -292,7 +294,7 @@ def xy_question(parse, x, y, z):
         if token.lemma_ in ['birth', 'work', 'death'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause']:
             x = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
-        if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj':
+        if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj' and x == '':
             x = token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ in ['pobj'] and token.head.dep_ in ['acomp'] and y == '':
@@ -311,8 +313,6 @@ def xy_question(parse, x, y, z):
             x = 'has part'
         elif token.text == 'died':
             x = 'date of death'
-        elif token.text == 'moons':
-            x = 'moon'
         elif token.text == 'products':
             x = 'product or material produced'
         elif token.text == 'maximally':
@@ -355,6 +355,8 @@ def xy_question(parse, x, y, z):
             y = 'Nicolas Tesla'
         elif token.text == 'Isaac':
             y = 'Isaac Newton'
+        elif token.text in ['Saturn', 'saturn']:
+            y = 'Saturn'
 
         if y == "Moon " and x == "far ":
             x = "distance from Earth" + " "
@@ -654,7 +656,7 @@ def get_query(x, y, z):
 
     #print(x, y, z)
 
-    if z:
+    if z and z not in ['sixth', 'seventh', 'third', 'second', 'fourth']:
         if z == "COUNT":
             query = '''SELECT (COUNT (DISTINCT ?item) AS ?answerLabel)
                        WHERE {'''
@@ -699,15 +701,23 @@ def get_query(x, y, z):
                      }
                  }
                  '''
-    return query
+    return query, z
 
 
-def get_answer(query):
+def get_answer(query, z):
     """
     Returns the wikidata answer to the given query.
     :param query:       string
     :return answer:     list
     """
+
+    number_dict = {'first': 0,
+                   'second': 1,
+                   'third': 2,
+                   'fourth': 3,
+                   'fifth': 4,
+                   'sixth': 5,
+                   'seventh': 6}
 
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
@@ -717,13 +727,27 @@ def get_answer(query):
                      params={'query': query, 'format': 'json'})
     data = r.json()
     try:
+        z_index = number_dict[z]
+    except KeyError:
+        z_index = ''
+
+    try:
         answer = list()
         for item in data['results']['bindings']:
             answer.append(item['answerLabel']['value'])
     except KeyError:
         answer = [data["boolean"]]
 
-    return answer
+    if z_index != '':
+        try:
+            answer_new = list()
+            answer_new.append(answer[z_index])
+            return answer_new
+        except IndexError:
+            answer_new = False
+            return answer_new
+    else:
+        return answer
 
 
 def create_and_fire_query(question):
@@ -752,7 +776,7 @@ def create_and_fire_query(question):
                             print("test", x_id, y_id)
                             if x_id and y_id:
                                 query = get_query(x_id, y_id, z)
-                                answer = get_answer(query)
+                                answer = get_answer(query, z)
                                 if z == "COUNT":
                                     if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
                                         return answer
@@ -764,7 +788,7 @@ def create_and_fire_query(question):
                         print("test", x_id, y_id)
                         if x_id and y_id:
                             query = get_query(x_id, y_id, z)
-                            answer = get_answer(query)
+                            answer = get_answer(query, z)
                             if z == "COUNT":
                                 if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
                                     return answer
@@ -777,14 +801,14 @@ def create_and_fire_query(question):
                     z_id = get_wiki_id(z, type="entity", x=i)
                     if y_id and z_id:
                         query = get_query(None, y_id, z_id)
-                        answer = get_answer(query)
+                        answer = get_answer(query, z)
                         if answer:  # If an answer is found return it
                             if answer[0] or (i == 2 and j == 2):  # Due to False given if nothing found
                                 return answer
 
             else:
                 query = get_query(None, y_id, None)
-                answer = get_answer(query)
+                answer = get_answer(query, z)
                 if answer:  # If an answer is found return it
                     return answer
 
