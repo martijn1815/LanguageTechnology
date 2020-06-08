@@ -488,8 +488,31 @@ def how_question(parse, x, y, z):
             x = "shape"
         
 
-        if (token.dep_ in ["nsubj", "nsubjpass"] and token.head.dep_ == "ROOT" and token.pos_ != "PRON") or (token.dep_ in ["pobj", "dobj"] and token.pos_ != "PRON" and token.head.dep_ not in ["ROOT", "advcl"]) or (token.dep_ == "nsubj" and token.pos_ == "PROPN") or (token.head.dep_ in ["nsubj", "nsubjpass"] and token.head.head.dep_ == "ROOT" and token.head.pos_ != "PRON" and token.dep_ == "compound"):
+        if token.dep_ in ["nsubj"] and token.pos_ not in ['PRON', 'SCONJ', 'ADJ'] and token.head.dep_ in ['ROOT', 'advcl']:
             y += token.lemma_ + " "
+        if token.dep_ in ["nsubjpass"]:
+            rc = 0
+            for token2 in parse:
+                if token2.dep_ in ['nsubj', 'pobj']:
+                    rc += 1
+            if rc == 0:
+                y += token.text + " "
+        if token.dep_ in ['pobj'] and len(y) == 0 and token.head.dep_ in ['ROOT']:
+            y += token.lemma_ + " "
+        if token.dep_ in ['dobj'] and (token.head.dep_ in ['relcl'] or token.pos_ in ['PROPN']):
+            y += token.lemma_ + " "
+        if token.dep_ in ['compound']:
+            if token.head.dep_ == 'nsubj':
+                if token.head.lemma_[0].isupper():
+                    if token.lemma_[0].isupper():
+                        y += token.text + " "
+                else:
+                    y += token.text + " "
+            elif token.head.dep_ == 'pobj':
+                if len(y) == 0 and token.head.head.dep_ == "ROOT":
+                    y += token.text + " "
+    if y == 'emu ':
+        y = 'emu alfa'
 
     return x,y,z
 
