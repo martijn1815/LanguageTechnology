@@ -14,25 +14,6 @@
 22	From what parts is the neuron constructed?
 23	From which materials is stainless steel made?
 24	Give the chemical formula for glucose?
-143	In what city was Joe Rogan born?
-144	In what country can you find the mount everest?
-145	In what country was Albert Einstein born?
-146	In what country where the Solvay Conferences held?
-147	In what field did Terence McKenna work in?
-148	In what fields did Marie Curie work?
-149	In what languages did Isaac Newton write?
-150	In what month was NASA founded?
-151	In what part of the human body can the brain be found?
-152	In what scales can you measure temperature?
-153	In what year did Einstein come up with the theory of special relativity ?
-154	In what year Naruto was published for the first time?
-155	In what year was einsteinium discovered?
-156	In what year was Google founded?
-157	In what year was methylphenidate first discovered?
-158	In what year was polonium discovered?
-161	In what year were tanks invented?
-166	In which part of the cell can you find mitochondria?
-169	In which year was WiFi invented?
 185	Ivan Pavlov was nominated for how many Nobel Prizes?
 186	Mention the four symptoms of migraine.
 187	Milk is produced by what class of organism?
@@ -65,38 +46,8 @@
 274	What creates a rainbow?
 275	What criteria are used to determine whether something is a scientific field?
 276	What criteria determine whether something is a scientific field?
-277	What did Alan Turing do?
-278	What did Thomas Edison die from?
-279	What did Turing die of?
-280	What did Wilhelm Röntgen die from?
-281	What does a CPU connect with?
-282	What does a molecule consist of?
-283	What does anthropology study?
-284	What does blood consist of?
-285	What does DNA stand for?
-286	What does LCD stand for?
-287	What does "REM sleep" stand for?
-288	What does snow consist out of?
-289	What does survival of the fittest mean?
-290	What does the abbreviation DNA stand for?
-291	What does the acronym NASA stand for?
-292	What does the Dijkstra algorithm solve?
-293	What does the field of Information Science study?
-294	What does the mitochondrion consist of?
-295	What does the Planck constant measure?
-296	What does the unit 'ohm' denote?
-297	What does WiFi stand for?
-298	What does x86 stand for in computer terms?
-299	What does zoonosis mean?
-300	What domain do animals belong to?
-301	What do people in the field of Aerophilately study?
-302	What do the letters DNA stand for?
-303	What do we call a practitioner of Earth Sciences?
-304	What do we call the partiality that prevents objective or alternative consideration of an issue or situation in a scientific experiment?
 305	What factors can contribute to heart disease?
-307	What fields did Newton work in?
 309	What important phenomenon associated with the universe occurred 13798 million years BCE?
-310	What important projects did Charles Babbage work on?
 313	What is accepted as the Japanese name for the Nintendo Switch?
 326	What is Archimedes known for?
 335	What is light made of?
@@ -104,26 +55,12 @@
 344	What is studied by ornithology?
 565	What is used in the H&amp;E stain method?
 569	What kind of disease can you get if you don't protect your eyes from ultraviolet?
-570	What kind of interaction does a quark have?
-572	What languages did Isaac Newton speak?
 573	What makes plants green?
-574	What mass does a human brain typically have?
-575	What mass does the Andromeda galaxy have?
 576	What mercury level can be immediatly dangerous for human life or health?
-577	What Nobel Prize did Marie Curie win?
-578	What Nobel prize did Werner Heisenberg win?
-580	What parts does a brain have?
-581	What parts does a motherboard consist of?
-582	What parts does a neuron consists of?
 583	What planet has the largest radius in the solar system?
-586	What planets does the inner solar system contain?
-588	What shape does DNA have?
-589	What sort of data do corpus linguists analyse?
-591	What sound does a cat make?
 593	What substance is hair made of?
 594	What symbol is used to denote the gravitational constant?
 595	What technique is magnetic-resonance imaging based on?
-596	What temperature does the sun have at its core?
 598	What terms could be used to describe the shape of DNA?
 600	What type of astronomy started at 1200 BCE?
 601	What type of boundary has the sun?
@@ -131,9 +68,7 @@
 603	What types of animal have gills?
 604	What types of Nobel Prices exist?
 606	What unit symbol is used to denote the speed of light?
-607	What University did Isaac Newton work for?
 609	What village was Nikola Tesla born in?
-626	What year did Pluto stop being classified as a planet ?
 627	What year was the first iPhone available?
 628	What year was the telephone invented?
 629	When Apple Inc. was founded

@@ -558,10 +558,51 @@ def in_question(parse, x, y, z):
 
         if token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ != "PRON" and token.lemma_ not in ["country"]:
             y += token.lemma_ + " "
-        if token.dep_ == "dobj" and token.head.dep_:
+        if token.dep_ == "dobj":
             y += token.text + " "
         if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj"]:
             y += token.text + " "
+
+    return x,y,z
+
+
+def is_what_do_question(parse):
+    if parse[0].lemma_ == "what":
+        for token in parse:
+            if token.lemma_ == "do":
+                return True
+        return False
+    return False
+
+
+def what_do_question(parse, x, y, z):
+    c = 0
+    for token in parse:
+        c += 1
+        if token.head.lemma_ == "do":
+            x = "occupation"
+        if token.head.lemma_ == "die":
+            x = "cause of death"
+        if token.head.lemma_ == "consist":
+            x = ["material used", "has part"]
+        if token.head.lemma_ == "study":
+            x = "studies"
+        if token.head.lemma_ == "stand":
+            x = ["official name",""]
+        if token.head.lemma_ == "solve":
+            x = "solves"
+        if token.head.lemma_ == "mean":
+            x = ""
+        if token.head.lemma_ == "belong":
+            x = "instance of"
+
+        if token.lemma_ != "what" and c > 2:
+            if token.dep_ in ["nsubj", "nsubjpass", "csubj"] and token.pos_ != "PRON":
+                y += token.lemma_ + " "
+            if token.dep_ in ["dobj", "pobj"]:
+                y += token.text + " "
+            if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj"]:
+                y += token.text + " "
 
     return x,y,z
 
@@ -658,6 +699,11 @@ def get_x_y(question, print_info=False):
         # In question:
         if print_info: print("In question")
         x, y, z = in_question(parse, x, y, z)
+
+    elif is_what_do_question(parse):
+        # In question:
+        if print_info: print("What do question")
+        x, y, z = what_do_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     print(type(x))

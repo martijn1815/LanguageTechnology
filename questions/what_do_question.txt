@@ -1,0 +1,47 @@
+277	What did Alan Turing do?
+278	What did Thomas Edison die from?
+279	What did Turing die of?
+280	What did Wilhelm Röntgen die from?
+281-	What does a CPU connect with?		CPU wordt gezien als Compound
+282	What does a molecule consist of?
+283	What does anthropology study?
+284	What does blood consist of?
+285-	What does DNA stand for?		Staat niet op de pagina
+286	What does LCD stand for?
+287	What does "REM sleep" stand for?
+288	What does snow consist out of?
+289-	What does survival of the fittest mean?		Te lange zin
+290-	What does the abbreviation DNA stand for?	Staat niet bij de data
+291	What does the acronym NASA stand for?
+292	What does the Dijkstra algorithm solve?
+293-	What does the field of Information Science study?	IS is compound van study
+294	What does the mitochondrion consist of?
+295-	What does the Planck constant measure?
+296-	What does the unit Ohm denote?		Ohm is a compound, again
+297-	What does WiFi stand for?		Staat niet in de data
+298-	What does x86 stand for in computer terms?	Ook niet in de data
+299	What does zoonosis mean?
+300	What domain do animals belong to?
+301-	What do people in the field of Aerophilately study?	Compound, again 
+302	What do the letters DNA stand for?		Gaaaast, serieus...
+303	What do we call a practitioner of Earth Sciences?
+304	What do we call the partiality that prevents objective or alternative consideration of an issue or situation in a scientific experiment?
+307	What fields did Newton work in?
+310	What important projects did Charles Babbage work on?
+570	What kind of interaction does a quark have?
+572	What languages did Isaac Newton speak?
+574	What mass does a human brain typically have?
+575	What mass does the Andromeda galaxy have?
+577	What Nobel Prize did Marie Curie win?
+578	What Nobel prize did Werner Heisenberg win?
+580	What parts does a brain have?
+581	What parts does a motherboard consist of?
+582	What parts does a neuron consists of?
+586	What planets does the inner solar system contain?
+588	What shape does DNA have?
+589	What sort of data do corpus linguists analyse?
+591	What sound does a cat make?
+596	What temperature does the sun have at its core?
+607	What University did Isaac Newton work for?
+626	What year did Pluto stop being classified as a planet ?
+
