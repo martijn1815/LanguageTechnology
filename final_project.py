@@ -234,7 +234,8 @@ def xy_question(parse, x, y, z):
                         'member ': ['has part', 'crew member'],
                         'doctorial advisor ': 'doctoral advisor',
                         'planet ': 'child astronomical body',
-                        'moons ': 'child astronomical body'}
+                        'moons ': 'child astronomical body',
+                        'solar mass ': 'mass'}
 
     for token in parse:
 
@@ -262,7 +263,7 @@ def xy_question(parse, x, y, z):
             y += token.lemma_ + " "
 
         if token.dep_ in ["compound", "amod"] and token.head.dep_ == "nsubj" and token.pos_ not in ['ADJ'] and token.lemma_ not in x and y == '':
-            y += token.lemma_ + " "
+            y += token.lemma_ + " " + token.head.lemma_ + " "
         elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
         elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x:
@@ -281,10 +282,10 @@ def xy_question(parse, x, y, z):
                     z = token.text
                 else:
                     x += token.lemma_ + " " + token.head.lemma_ + " "
-            elif y == '' and token.lemma_ not in x:
+            elif y == '':
                 y += token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.dep_ == 'poss' and token.head.dep_ == 'nsubj' and y == '':
+        if token.dep_ == 'poss' and token.pos_ not in ['DET'] and token.head.dep_ == 'nsubj' and y == '':
             y += token.lemma_ + " "
 
         if token.pos_ in ["PROPN"] and token.head.pos_ == "ADP" and token.head.head.pos_ == "NOUN" and y == '':
@@ -347,7 +348,7 @@ def xy_question(parse, x, y, z):
             y = 'Avogadro constant'
         elif token.text == 'paracetamol':
             y = 'paracetamol'
-        elif token.text == 'sun':
+        elif token.text in ['sun', 'Sun']:
             y = 'sun'
         elif token.text == 'elephant':
             y = 'elephant'
@@ -357,9 +358,17 @@ def xy_question(parse, x, y, z):
             y = 'Isaac Newton'
         elif token.text in ['Saturn', 'saturn']:
             y = 'Saturn'
+        elif token.text in ['center', 'centre']:
+            z = 'CENTER'
+        elif token.text == 'temperature':
+            x = 'temperature'
+        elif token.text in ['sixth', 'seventh', 'third', 'second', 'fourth']:
+            z = token.text
 
         if y == "Moon " and x == "far ":
             x = "distance from Earth" + " "
+        elif y in ['solar system ', 'Solar System ', 'solar System ', 'Solar system '] and x == 'planet ':
+            y = 'Sun'
         elif y in ['light year', 'astronomical unit']:
             x = 'conversion to SI unit' + " "
         elif x == 'type ':
@@ -722,6 +731,20 @@ def get_query(x, y, z):
                                  '''
             query += '''ORDER BY ?item'''
 
+        elif z == "CENTER":
+            query = '''
+                    SELECT ?answerLabel WHERE {
+                    '''
+            query += "wd:{0} p:{1} ?statement.".format(y, x)
+            query += '''?statement ps:{0} ?answer;'''.format(x)
+            query += '''pq:P518 wd:Q23595.'''
+            query += '''
+                                             SERVICE wikibase:label {
+                                                bd:serviceParam wikibase:language "en".
+                                                }
+                                             }
+                                             '''
+
         else:
             query = "ASK WHERE {"
             query += "wd:{0} (wdt:P279|wdt:P31|wdt:P21)/wdt:P279* wd:{1} .".format(y, z)
@@ -754,14 +777,6 @@ def get_answer(query, z):
     :return answer:     list
     """
 
-    number_dict = {'first': 0,
-                   'second': 1,
-                   'third': 2,
-                   'fourth': 3,
-                   'fifth': 4,
-                   'sixth': 5,
-                   'seventh': 6}
-
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"}
     url = 'https://query.wikidata.org/sparql'
@@ -769,10 +784,6 @@ def get_answer(query, z):
                      headers=headers,
                      params={'query': query, 'format': 'json'})
     data = r.json()
-    try:
-        z_index = number_dict[z]
-    except KeyError:
-        z_index = ''
 
     try:
         answer = list()
@@ -781,16 +792,7 @@ def get_answer(query, z):
     except KeyError:
         answer = [data["boolean"]]
 
-    if z_index != '':
-        try:
-            answer_new = list()
-            answer_new.append(answer[z_index])
-            return answer_new
-        except IndexError:
-            answer_new = False
-            return answer_new
-    else:
-        return answer
+    return answer
 
 
 def create_and_fire_query(question):
@@ -835,6 +837,20 @@ def create_and_fire_query(question):
                             if z == "COUNT":
                                 if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
                                     return answer
+                            elif z in ['sixth', 'seventh', 'third', 'second', 'fourth']:
+                                for ans in answer:
+                                    for u in range(3):
+                                        new_y_id = get_wiki_id(ans, type="entity", x=u)
+                                        print("subtest", new_y_id)
+                                        new_query = get_query(None, new_y_id, None)
+                                        new_answer = get_answer(new_query, z)
+                                        try:
+                                            if z in new_answer[0]:
+                                                returned_ans = list()
+                                                returned_ans.append(ans)
+                                                return returned_ans
+                                        except IndexError:
+                                            pass
                             else:
                                 if answer:  # If an answer is found return it
                                     return answer
