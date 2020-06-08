@@ -1,6 +1,6 @@
 27	How are rainbows made?
 34	How can gravity be described?
-3511	How can the effects of psilocybin mushrooms be described?
+35	How can the effects of psilocybin mushrooms be described?
 36	How could you describe the shape of DNA?
 39	How did Alan Turing die?
 40	How did Alan Turing Die?
@@ -16,17 +16,17 @@
 60	How is sleep defined?
 62	How is velocity normally measured?
 68	How long does it take for Mars to make one rotation?
-6911	How long does it take for Saturn to make an orbit around the Sun?
-7011	How long does it take Mercury to revolve around the sun?
-7111	How long does it take Pluto to make one full revolution?
-7211	How long does SARS incubate in humans maximally?
+69	How long does it take for Saturn to make an orbit around the Sun?
+70	How long does it take Mercury to revolve around the sun?
+71	How long does it take Pluto to make one full revolution?
+72	How long does SARS incubate in humans maximally?
 11711	How much does a baby giant panda weigh?
 11811	How much does a female emu weigh?
 119	How much does Pluto weigh?
 120	How much does the earth weigh?
-12111	How much does the planet Jupiter weigh?
+121	How much does the planet Jupiter weigh?
 122	How much does the sun weigh?
 123	How much energy does the sun emit?
-12611	How much joule per kilogram energy does glass embody?
+126	How much joule per kilogram energy does glass embody?
 127	How old can a cow get?
 12811	How old did the oldest human get?
