@@ -519,6 +519,44 @@ def how_question(parse, x, y, z):
     return x,y,z
 
 
+def is_in_question(parse):
+    if parse[0].lemma_ == "in":
+        return True
+    return False
+
+
+def in_question(parse, x, y, z):
+    for token in parse:
+        if token.head.lemma_ == "bear":
+            x = "place of birth"
+        if token.head.lemma_ == "country":
+            x = "country"
+        if token.head.lemma_ == "work":
+            x = "field of work"
+        if token.head.lemma_ == "language":
+            x = "languages spoken, written or signed"
+        if token.head.lemma_ == "found":
+            x = "inception"
+        if token.head.lemma_ == "measure":
+            x = "measurement scale"
+        if token.head.lemma_ == "find":
+            x = ["anatomical location", "part of"]
+        if token.head.lemma_ == "publish":
+            x = "publication date"
+        if token.head.lemma_ in ["discover", "invent"]:
+            x = ["time of discovery or invention", "inception"]
+
+
+        if token.dep_ in ["nsubj", "nsubjpass"] and token.pos_ != "PRON" and token.lemma_ not in ["country"]:
+            y += token.lemma_ + " "
+        if token.dep_ == "dobj" and token.head.dep_:
+            y += token.text + " "
+        if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj"]:
+            y += token.text + " "
+
+    return x,y,z
+
+
 def is_count_question(parse):
     if parse[0].lemma_ == "how" and parse[1].lemma_ == "many":
         return True
@@ -606,6 +644,11 @@ def get_x_y(question, print_info=False):
         # How question:
         if print_info: print("How question")
         x, y, z = how_question(parse, x, y, z)
+
+    elif is_in_question(parse):
+        # In question:
+        if print_info: print("In question")
+        x, y, z = in_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     print(type(x))
