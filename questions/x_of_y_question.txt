@@ -1,6 +1,7 @@
 0	After which French physician is Gilbert syndrome named?
 1	After whom was the asteroid 1134 Kepler named?
 11	At what speed does a photon move?
+15	Botanically, is tomato a fruit?
 25	How are elements organized on the periodic table of elements?
 28	How big is a tiger at birth?
 29	How big is our solar system?

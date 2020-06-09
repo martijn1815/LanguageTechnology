@@ -54,7 +54,6 @@
 338	What is penicillin made of?
 344	What is studied by ornithology?
 565	What is used in the H&amp;E stain method?
-569	What kind of disease can you get if you don't protect your eyes from ultraviolet?
 573	What makes plants green?
 576	What mercury level can be immediatly dangerous for human life or health?
 583	What planet has the largest radius in the solar system?
