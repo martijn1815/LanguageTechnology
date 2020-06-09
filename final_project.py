@@ -176,9 +176,6 @@ def when_question(parse, x, y, z):
                 if token.dep_ in ["compound","pobj","nummod","dobj"]:
                     y += token.lemma_ + " "
 
-    if y.strip() == "black plague":
-        y = "black death"
-
     if x == "": #if x does not have a value try point in time
         x = ["point in time","inception","time of discovery or invention"]
 
@@ -788,6 +785,8 @@ def get_x_y(question, print_info=False):
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     if print_info: print("Type of x:", type(x))
+    if y.strip() == "black plague":
+        y = "black death"
     if type(x) == list:
         return x, y.strip(), z.strip()
     return x.strip(), y.strip(), z.strip()
