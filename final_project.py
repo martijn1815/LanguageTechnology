@@ -669,24 +669,33 @@ def is_when_question(parse):
 
 
 def when_question(parse, x, y, z):
-    if parse[1].lemma_ == "be":
-        # When was/is question
-        for token in parse:
-            if token.pos_ in ["NOUN", "PROPN"]:
-                y += token.text + " "
-            if token.pos_ == "VERB":
-                # Date of birth:
-                if token.lemma_ == "bear":
-                    x = "date of birth"
-                # Date of death:
-                elif token.lemma_ == "die":
-                    x = "date of death"
-                # Other
-                else:
-                    x += token.lemma_ + " "
-    elif parse[1].lemma_ == "do":
-        # When did question:
-        pass
+    for token in parse:
+        if token.pos_ in ["NOUN", "PROPN"] and token.dep_ != "npadvmod":
+            y += token.text + " "
+        if token.pos_ == "NUM" and "world war" in y:
+            y += token.text + " "
+        if token.pos_ == "ADJ" and token.head.pos_ == "NOUN":
+            y += token.text + " "
+
+        if token.pos_ == "VERB":
+            # Date of birth:
+            if token.lemma_ == "bear":
+                x = "date of birth"
+            # Date of death:
+            elif token.lemma_ == "die":
+                x = "date of death"
+            # Point in time:
+            elif token.lemma_ in ["occur", "happen"]:
+                x = "point in time"
+            # Other
+            else:
+                x += token.lemma_ + " "
+        if token.dep_ == "npadvmod":
+            x += token.lemma_ + " "
+
+    if y.strip() == "black plague":
+        y = "black death"
+
     return x, y, z
 
 def get_x_y(question, print_info=False):
