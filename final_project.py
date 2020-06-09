@@ -688,6 +688,24 @@ def count_question(parse, x, y, z):
     return x, y, "COUNT"
 
 
+def if_at_what_question(parse):
+    if parse[0].lemma_ == "at" and parse[1].lemma_ == "what":
+        return True
+    return False
+
+
+def at_what_question(parse, x, y, z):
+    meltingpoint_list = [token.lemma_ for token in parse]
+    if "temperature" in meltingpoint_list and "melt" in meltingpoint_list:
+        x = "melting point"
+
+        for token in parse:
+            if token.pos_ in ["NOUN", "PROPN"] and token.lemma_ != "temperature":
+                y += token.lemma_ + " "
+
+    return x, y, z
+
+
 def get_x_y(question, print_info=False):
     """
     Gets X and Y from questions using spacy
@@ -761,6 +779,9 @@ def get_x_y(question, print_info=False):
         # In question:
         if print_info: print("What do question")
         x, y, z = what_do_question(parse, x, y, z)
+
+    elif if_at_what_question(parse):
+        x, y, z = at_what_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     if print_info: print("Type of x:", type(x))
@@ -971,7 +992,7 @@ def create_and_fire_query(question):
     :return answer:     list
     """
 
-    x, y, z = get_x_y(question, print_info=True)
+    x, y, z = get_x_y(question)
     for j in range(3):  # Check top 3 entity options
         # Check bi-grams as well if y contains more than 2 tokens:
         y_list = [y]
@@ -1044,18 +1065,21 @@ def main(argv):
     print("# Input a question:")
     for line in sys.stdin:
         line = line.strip().split("\t")
-        n = line[0]
-        question = line[1]
-        answer = create_and_fire_query(question)
+        if len(line) == 2:
+            n = line[0]
+            question = line[1]
+            answer = create_and_fire_query(question)
 
-        # Print output:
-        print(n, end="")
-        if answer:
-            for ans in answer:
-                if ans == True: ans = "yes"
-                if ans == False: ans = "no"
-                print("\t{0}".format(ans), end="")
-        print()
+            # Print output:
+            print(n, end="")
+            if answer:
+                for ans in answer:
+                    if ans == True: ans = "yes"
+                    if ans == False: ans = "no"
+                    print("\t{0}".format(ans), end="")
+            print()
+        else:
+            print("Error, please input question in right format!")
 
 
 if __name__ == "__main__":
