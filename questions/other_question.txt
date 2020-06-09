@@ -70,55 +70,6 @@
 609	What village was Nikola Tesla born in?
 627	What year was the first iPhone available?
 628	What year was the telephone invented?
-629	When Apple Inc. was founded
-630	When did Alexander Graham Bell die?
-631	When did Baroque music fall out of fashion?
-632	When did Isaac Newton win the Knight Bachelor award?
-633	When did John Conway die?
-634	When did Stephen Hawking get his doctorate?
-635	When did the big bang happen?
-636	When did the Big Bang happen?
-637	When did the Big Bang occur?
-638	When did the black plague begin?
-639	When did the first human land on the moon?
-640	When did the ISS launch into space?
-641	When did the planet Mars form?
-642	When did the specie Homo Neanderthalensis go extinct?
-643	When did the specie Homo Sapiens first appear on Earth?
-644	When did the universe begin?
-645	When did world war 1 end?
-646	When is the telephone invented?
-648	When was Albert Einstein born?
-651	When was Earth formed?
-652	When was Einstein born?
-653	When was gold discovered?
-654	When was Hangul invented?
-656	When was Marie Curie born?
-657	When was mitochondrial DNA discovered?
-658	When was Myrtle Bachelder born?
-659	When was oxygen discovered?
-660	When was penicilin discovered?
-661	When was penicillin discovered?
-662	When was penicillin invented?
-663	When was pluto discovered?
-664	When was pluto disqualified as a planet?
-665	When was Pluto first discovered?
-666	When was plutonium discovered?
-671	When was the Doppler effect discovered?
-678	When was the first transistor constructed?
-680	When was the Higgs Boson discovered?
-681	When was the Hubble Telescope launched?
-684	When was the International Space Station launched?
-685	When was the internet established?
-686	When was the mobile operating system 'android' made?
-688	When was the Nobel Prize established?
-691	When was the Philosophiae Naturalis Principia Mathematica written?
-693	When was the telephone invented?
-694	When was the telescope invented?
-695	When was the transistor invented?
-696	When was the Turing Award instituted?
-697	When was tungsten first discovered?
-698	When was Uranus discovered?
 743	Which artery supplies blood to the liver?
 744	Which austronaut missions was Neil Armstrong on?
 745	Which awards did Alan Turing receive?

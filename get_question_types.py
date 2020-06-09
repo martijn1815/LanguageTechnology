@@ -20,6 +20,7 @@ def main(argv):
     how_file = open('questions/how_questions.txt', 'w')
     in_file = open('questions/in_questions.txt', 'w')
     what_do_file = open('questions/what_do_questions.txt', 'w')
+    when_file = open('questions/when_questions.txt', 'w')
     other_file = open('questions/other_question.txt', 'w')
 
     with open("all_questions_formatted.txt", "r") as file:
@@ -65,6 +66,10 @@ def main(argv):
                 # In question:
                 what_do_file.write("{0}\t{1}\n".format(n, question))
 
+            elif is_when_question(parse):
+                # When question:
+                when_file.write("{0}\t{1}\n".format(n, question))
+
             else:
                 other_file.write("{0}\t{1}\n".format(n, question))
 
@@ -77,6 +82,7 @@ def main(argv):
     how_file.close()
     in_file.close()
     what_do_file.close()
+    when_file.close()
     other_file.close()
 
 

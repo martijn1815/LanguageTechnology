@@ -632,7 +632,7 @@ def what_do_question(parse, x, y, z):
             if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj"]:
                 y += token.text + " "
 
-    return x,y,z
+    return x, y, z
 
 
 def is_count_question(parse):
@@ -658,6 +658,16 @@ def count_question(parse, x, y, z):
     if x.strip() == "moon": x = "child astronomical body"
     return x, y, "COUNT"
 
+
+def is_when_question(parse):
+    if parse[0].lemma_ == "when":
+        return True
+    return False
+
+
+def when_question(parse, x, y, z):
+    print(parse[1].lemma_)
+    return x, y, z
 
 def get_x_y(question, print_info=False):
     """
@@ -732,6 +742,11 @@ def get_x_y(question, print_info=False):
         # In question:
         if print_info: print("What do question")
         x, y, z = what_do_question(parse, x, y, z)
+
+    elif is_when_question(parse):
+        # When question:
+        if print_info: print("When question")
+        x, y, z = when_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     print(type(x))
