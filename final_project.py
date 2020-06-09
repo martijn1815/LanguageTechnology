@@ -193,6 +193,7 @@ def is_xy_question(parse):
 
 
 def xy_question(parse, x, y, z):
+    definition = False
     translation_dict = {'big ': ['diameter', 'mass'],
                         'deep ': 'elevation',
                         'dense ': 'density',
@@ -255,7 +256,7 @@ def xy_question(parse, x, y, z):
                                     token.pos_ not in ["PRON", "DET", "ADJ"]):
             if x == '':
                 x += token.lemma_ + " "
-            elif y == '' and token.lemma_ not in x:
+            elif y == '' and token.lemma_ not in x and token.text not in ['study']:
                 y += token.lemma_ + " "
         elif (token.dep_ == "poss" and token.pos_ not in ["DET", "PROPN"]) or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
@@ -266,10 +267,10 @@ def xy_question(parse, x, y, z):
             y += token.lemma_ + " " + token.head.lemma_ + " "
         elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
-        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x:
+        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x and y == '':
             y = token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"]:
+        if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"] and y == '':
             y = token.head.text + " " + token.lemma_ + " "
 
         if token.pos_ == "ADJ" and token.head.pos_ == "NOUN" and token.head.head.pos_ == "NOUN":
@@ -282,7 +283,7 @@ def xy_question(parse, x, y, z):
                     z = token.text
                 else:
                     x += token.lemma_ + " " + token.head.lemma_ + " "
-            elif y == '':
+            elif y == '' and token.head.lemma_ not in x:
                 y += token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == 'poss' and token.pos_ not in ['DET'] and token.head.dep_ == 'nsubj' and y == '':
@@ -292,7 +293,9 @@ def xy_question(parse, x, y, z):
             y = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
         if token.dep_ == 'compound' and token.head.dep_ == 'compound' and token.head.head.dep_ == 'nsubj' and x == '':
             x = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
-        if token.lemma_ in ['birth', 'work', 'death'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause']:
+        if token.dep_ == 'compound' and token.head.dep_ == 'compound' and token.head.head.dep_ == 'pobj' and y == '':
+            y = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
+        if token.lemma_ in ['birth', 'work', 'death', 'sound'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause', 'speed']:
             x = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
         if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj' and x == '':
@@ -301,8 +304,14 @@ def xy_question(parse, x, y, z):
         if token.dep_ in ['pobj'] and token.head.dep_ in ['acomp'] and y == '':
             y += token.lemma_ + " " + token.head.lemma_ + " "
 
-        if token.dep_ in ['appos', 'nsubjpass']:
+        if token.dep_ in ['appos', 'nsubjpass'] and token.pos_ not in ['DET'] and y == '':
             y = token.lemma_
+
+        if token.dep_ == 'nummod' and token.head.dep_ in ['compound', 'pobj']:
+            if token.head.head.dep_ in ['pobj', 'appos']:
+                z = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
+            else:
+                z = token.lemma_ + " " + token.head.lemma_
 
         if token.text == 'invented':
             x = ["time of discovery or invention", "inception"]
@@ -364,6 +373,12 @@ def xy_question(parse, x, y, z):
             x = 'temperature'
         elif token.text in ['sixth', 'seventh', 'third', 'second', 'fourth']:
             z = token.text
+        elif token.text == 'definition':
+            definition = True
+        elif token.text in ['liquid', 'solid']:
+            z = token.text
+        elif token.text == 'alcohol':
+            y = 'alcohol'
 
         if y == "Moon " and x == "far ":
             x = "distance from Earth" + " "
@@ -377,7 +392,7 @@ def xy_question(parse, x, y, z):
             y = 'Inner Solar System'
         elif y == 'horsepower ':
             y = 'Metric horsepower'
-        elif y == 'liquid potassium ':
+        elif y in ['liquid potassium ', 'solid potassium ']:
             y = 'potassium'
         elif x == 'surface ':
             x = "area" + " "
@@ -387,9 +402,14 @@ def xy_question(parse, x, y, z):
             y = 'World Wide web'
         elif y == 'Pythagoras ':
             y = 'Pythagoras theorem'
-
-        if 'definition' in x:
+        elif x == 'dutch word ':
             x = ''
+            z = "DUTCH"
+        elif y == 'biological cell ':
+            y = 'cell'
+        elif x == 'official name ':
+            z = "LABEL"
+
 
     try:
         x = translation_dict[x]
@@ -397,6 +417,9 @@ def xy_question(parse, x, y, z):
         pass
     except TypeError:
         pass
+
+    if definition:
+        x = ''
 
     return x, y, z
 
@@ -790,6 +813,59 @@ def get_query(x, y, z):
                                                 }
                                              }
                                              '''
+        elif z in ['0 degree Celsius', '75 degree']:
+            query = '''
+                                SELECT ?answerLabel WHERE {
+                                '''
+            query += "wd:{0} p:{1} ?statement.".format(y, x)
+            query += '''?statement ps:{0} ?answer;'''.format(x)
+            query += '''pq:P2076 {0}.'''.format(int(z.split(" ")[0]))
+            query += '''
+                                                         SERVICE wikibase:label {
+                                                            bd:serviceParam wikibase:language "en".
+                                                            }
+                                                         }
+                                                         '''
+        elif z == 'liquid':
+            query = '''
+                                            SELECT ?answerLabel WHERE {
+                                            '''
+            query += "wd:{0} p:{1} ?statement.".format(y, x)
+            query += '''?statement ps:{0} ?answer;'''.format(x)
+            query += '''pq:P515 wd:Q11435.'''
+            query += '''
+                                                                     SERVICE wikibase:label {
+                                                                        bd:serviceParam wikibase:language "en".
+                                                                        }
+                                                                     }
+                                                                     '''
+        elif z == 'solid':
+            query = '''
+                                                        SELECT ?answerLabel WHERE {
+                                                        '''
+            query += "wd:{0} p:{1} ?statement.".format(y, x)
+            query += '''?statement ps:{0} ?answer;'''.format(x)
+            query += '''pq:P515 wd:Q11438.'''
+            query += '''
+                                                                                 SERVICE wikibase:label {
+                                                                                    bd:serviceParam wikibase:language "en".
+                                                                                    }
+                                                                                 }
+                                                                                 '''
+        elif z == 'DUTCH':
+            query = '''
+                            SELECT ?answerLabel WHERE {
+                            '''
+            query += '''
+                                 wd:{0} schema:description ?answer.
+                                 FILTER(LANG(?answer) = "nl")
+                                 '''.format(y)
+            query += '''
+                             SERVICE wikibase:label {
+                                 bd:serviceParam wikibase:language "nl".
+                                 }
+                             }
+                             '''
 
         else:
             query = "ASK WHERE {"
@@ -813,10 +889,10 @@ def get_query(x, y, z):
                      }
                  }
                  '''
-    return query, z
+    return query
 
 
-def get_answer(query, z):
+def get_answer(query):
     """
     Returns the wikidata answer to the given query.
     :param query:       string
@@ -867,7 +943,7 @@ def create_and_fire_query(question):
                             print("test", x_id, y_id)
                             if x_id and y_id:
                                 query = get_query(x_id, y_id, z)
-                                answer = get_answer(query, z)
+                                answer = get_answer(query)
                                 if z == "COUNT":
                                     if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
                                         return answer
@@ -879,7 +955,7 @@ def create_and_fire_query(question):
                         print("test", x_id, y_id)
                         if x_id and y_id:
                             query = get_query(x_id, y_id, z)
-                            answer = get_answer(query, z)
+                            answer = get_answer(query)
                             if z == "COUNT":
                                 if answer[0] != "0":  # As 0 is returned if noting is found for the COUNT
                                     return answer
@@ -889,7 +965,7 @@ def create_and_fire_query(question):
                                         new_y_id = get_wiki_id(ans, type="entity", x=u)
                                         print("subtest", new_y_id)
                                         new_query = get_query(None, new_y_id, None)
-                                        new_answer = get_answer(new_query, z)
+                                        new_answer = get_answer(new_query)
                                         try:
                                             if z in new_answer[0]:
                                                 returned_ans = list()
@@ -906,14 +982,14 @@ def create_and_fire_query(question):
                     z_id = get_wiki_id(z, type="entity", x=i)
                     if y_id and z_id:
                         query = get_query(None, y_id, z_id)
-                        answer = get_answer(query, z)
+                        answer = get_answer(query)
                         if answer:  # If an answer is found return it
                             if answer[0] or (i == 2 and j == 2):  # Due to False given if nothing found
                                 return answer
 
             else:
                 query = get_query(None, y_id, None)
-                answer = get_answer(query, z)
+                answer = get_answer(query)
                 if answer:  # If an answer is found return it
                     return answer
 

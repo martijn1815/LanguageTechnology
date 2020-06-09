@@ -4,14 +4,7 @@ X-of-Y questions not yet working correctly:
 349	What is the amount of degrees in Celsius at which glucose melts?
 376	What is the cause of SARS-CoV-2?
 378	What is the centre of an atom called?
-399	What is the deepest part of the Earth's oceans named?
-401	What is the definition of mind-body dualism?
-403	What is the density of liquid potassium?
-404	What is the density of water at 0 degree Celsius?
-405	What is the density of water at 75 degrees Celcius?
 406	What is the diameter of carbon fiber?
-411	What is the distance between earth and its closest celestial body?
-416	What is the Dutch word for light bulb?
 418	What is the electrical charge of a molecule?
 427	What is the equation of photosenthesis?
 428	What is the estimated diameter of the Solar System in astronomical units?
@@ -35,15 +28,12 @@ X-of-Y questions not yet working correctly:
 485	What is the name of the chemical structure of paracetamol?
 486	What is the name of the intergovernmental organisation dedicated to the exploration of space, which was founded by Belgium, Denmark, France, Germany, Italy, the Netherlands, Spain, Sweden, the United Kingdom and Switzerland?
 487	What is the name of the light-sensitive tissue layer inside the eye?
-488	What is the name of the science that is devoted to the study of fish?
-490	What is the name of the study of biological cells?
 491	What is the name of the syndrome that makes patients think that their loved ones are replaced by identical impostor?
 492	What is the nationality of the creator of the Python programming language?
 496	What is the official name of the drug paracetamol?
 498	What is the oldest known living three?
 507	What is the order of planets from the sun?
 511	What is the planet that has the most natural satelites?
-534	What is the speed of sound in alcohol?
 535	What is the standard base unit of electric current?
 537	What is the subclass of the formula for Schrödinger's Equation?
 546	What is the temperature in degrees Celcius at which ethanol boils?
