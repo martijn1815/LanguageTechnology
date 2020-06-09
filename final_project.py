@@ -469,7 +469,7 @@ def description_question(parse, x, y, z):
 def is_who_question(parse):
     if parse[0].lemma_ == "who":
         return True
-    if parse[-2].lemma_ == "whom":
+    if parse[-2].lemma_ in ["whom","who"]:
         return True
     return False
 
