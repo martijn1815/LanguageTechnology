@@ -17,6 +17,9 @@ def main(argv):
     truefalse_file = open('questions/true_false_question.txt', 'w')
     description_file = open('questions/description_question.txt', 'w')
     count_file = open('questions/count_questions.txt', 'w')
+    how_file = open('questions/how_questions.txt', 'w')
+    in_file = open('questions/in_questions.txt', 'w')
+    what_do_file = open('questions/what_do_questions.txt', 'w')
     other_file = open('questions/other_question.txt', 'w')
 
     with open("all_questions_formatted.txt", "r") as file:
@@ -50,6 +53,18 @@ def main(argv):
                 # Count question:
                 count_file.write("{0}\t{1}\n".format(n, question))
 
+            elif is_how_question(parse):
+                # How question:
+                how_file.write("{0}\t{1}\n".format(n, question))
+
+            elif is_in_question(parse):
+                # In question:
+                in_file.write("{0}\t{1}\n".format(n, question))
+
+            elif is_what_do_question(parse):
+                # In question:
+                what_do_file.write("{0}\t{1}\n".format(n, question))
+
             else:
                 other_file.write("{0}\t{1}\n".format(n, question))
 
@@ -59,6 +74,9 @@ def main(argv):
     truefalse_file.close()
     description_file.close()
     count_file.close()
+    how_file.close()
+    in_file.close()
+    what_do_file.close()
     other_file.close()
 
 

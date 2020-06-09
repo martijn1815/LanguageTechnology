@@ -1,0 +1,32 @@
+27	How are rainbows made?
+34	How can gravity be described?
+35	How can the effects of psilocybin mushrooms be described?
+36	How could you describe the shape of DNA?
+39	How did Alan Turing die?
+40	How did Alan Turing Die?
+41	How do you call someone that practices biology?
+42	How do you call the 2 parts of a leaf?
+43	How do you call the fear of the number 13?
+44	How far away is Alpha Centauri from Earth?
+45	How far away is Mars from Earth at most?
+46	How far away is the closest Star from Earth in whole light-years?
+47	How far away is the Sun?
+50	How fast can a cheetah run?
+54	How hot does water need to be for it to boil?
+60	How is sleep defined?
+62	How is velocity normally measured?
+68	How long does it take for Mars to make one rotation?
+69	How long does it take for Saturn to make an orbit around the Sun?
+70	How long does it take Mercury to revolve around the sun?
+71	How long does it take Pluto to make one full revolution?
+72	How long does SARS incubate in humans maximally?
+117	How much does a baby giant panda weigh?
+118	How much does a female emu weigh?
+119	How much does Pluto weigh?
+120	How much does the earth weigh?
+121	How much does the planet Jupiter weigh?
+122	How much does the sun weigh?
+123	How much energy does the sun emit?
+126	How much joule per kilogram energy does glass embody?
+127	How old can a cow get?
+128	How old did the oldest human get?
