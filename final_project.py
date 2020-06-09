@@ -5,7 +5,7 @@ Authors:    Martijn E.N.F.L. Schendstok (s2688174)
             Jannick Akkermans (s3429075)
             Niels Westeneng (s3469735)
             Mariska de Vries (s3483630)
-Date:       26 May 2020
+Date:       9 June 2020
 """
 
 import sys
