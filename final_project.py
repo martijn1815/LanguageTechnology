@@ -112,70 +112,75 @@ def is_when_question(parse):
 
 
 def when_question(parse, x, y, z):
+    lemma_lst = []
+    dep_lst = []
     pos_lst = []
     for token in parse:
+        lemma_lst.append(token.lemma_)
+        dep_lst.append(token.dep_)
         pos_lst.append(token.pos_)
 
-    if pos_lst[-1] == "VERB" or pos_lst[-2] == "VERB":
-        for token in parse:
-            if token.lemma_ in ["found","launch","form","reward","award","establish",
-                                "make","introduce","write","release","institude"]:
-                x = "inception"
-            if token.lemma_ in ["die"]:
-                x = "date of death"
-            if token.lemma_ in ["happen","occur"]:
-                x = "point in time"
-            if token.lemma_ in ["begin"]:
-                x = "start time"
-            if token.lemma_ in ["invent","discover","construct"]:
-                x = ["time of discovery or invention","inception"]
-            if token.lemma_ in ["bear"]:
-                x = "date of birth"
+    for token in parse:
+        if token.lemma_ in ["found","form","reward","establish","create","inception",
+                            "make","introduce","write","release","institude"]:
+            x = "inception"
+        if token.lemma_ == "launch":
+            x = ["launch", "UTC date of spacecraft launch","inception"]
+        if token.lemma_ == "die":
+            x = "date of death"
+        if token.lemma_ in ["happen","occur"]:
+            x = "point in time"
+        if token.lemma_ in ["begin","appear"]:
+            x = "start time"
+        if token.lemma_ in ["end","extinct","out"]:
+            x = "end time"
+        if token.lemma_ in ["invent","discover","construct"]:
+            x = ["time of discovery or invention","inception"]
+        if token.lemma_ in ["bear","birthday"]:
+            x = "date of birth"
+        if token.lemma_ == "award":
+            x = ["inception","award received"]
+        if token.lemma_ == "flight" and "first" in lemma_lst:
+            x = "first flight"
+        if token.lemma_ == "landing" and "moon" in lemma_lst:
+            x = "time of spacecraft landing"
+        if token.lemma_ == "tungsten":
+            y = "tungsten"
 
-            dep = ["nsubjpass","nsubj","prep","poss","compound","advcl"]
-            if (token.dep_ in dep or token.head.dep_ in dep) and token.pos_ not in ["DET","VERB"] and token.lemma_ != "first":
-                if token.dep_ == "poss":
-                    y += token.text + ""
-                else:
-                    y += token.text + " "
 
-    elif "VERB" in pos_lst:
-        for token in parse:
-            if token.lemma_ == "launch":
-                x = "launch"
-            if token.lemma_ == "appear":
-                x = "start time"
-            if token.lemma_ in ["extinct","out"]:
-                x = "end time"
-            if token.lemma_ == "award":
-                x = "award received"
-                z = "point in time"
+        if "VERB" in pos_lst: #parse contains a verb
+            if token.dep_ == "nsubj" and token.head.dep_ == "relcl":
+                y = token.lemma_
 
-            if token.dep_ in ["compound","appos","nsubj","nsubjpass","amod"]:
-                y += token.text + " "
+            elif token.dep_ == "nsubj" and token.head.lemma_ == "be":
+                y = token.lemma_
 
-    else: # "VERB" not in pos_lst:
-        for token in parse:
-            if token.lemma_ == "end":
-                x = "end time"
-            if token.lemma_ == "form":
-                x = "inception"
 
-            if token.dep_ in ["compound","nsubj","nummod","pobj","dobj","amod"]:
-                if token.lemma_ == "birthday":
-                    x = "date of birth" 
-                elif token.lemma_ == "flight":
-                    x = "first flight"
-                elif token.lemma_ == "inception":
-                    x = "inception"
-                elif token.lemma_ in "moon landing":
-                    x = "time of spacecraft landing"
-                    y = "moon landing"
-                else:
-                    y += token.text + " "
+            elif token.dep_ in ["nsubj","nsubjpass"]:
+                for tok in token.subtree:
+                    if tok.pos_ not in ["DET"] and tok.lemma_ != "first":
+                        if tok.dep_ == "poss":
+                            y += tok.text + ""
+                        else:
+                            y += tok.lemma_ + " "
 
-    if x == "":
+            elif token.dep_ == "compound" and token.head.dep_ == "ROOT":
+                y = token.lemma_
+
+        if "VERB" not in pos_lst: #parse does not contain a verb
+            if "pobj" not in dep_lst and "dobj" not in dep_lst:
+                if token.dep_ in ["compound","nsubj"]:
+                    y += token.lemma_ + " "
+
+            else:
+                if token.dep_ in ["compound","pobj","nummod","dobj"]:
+                    y += token.lemma_ + " "
+
+    if x == "": #if x does not have a value try point in time
         x = "point in time"
+
+    if y != "" and y[-2] == "s" and y[-3] == "e":
+        y = y[:-2]
 
     return x, y, z
 
