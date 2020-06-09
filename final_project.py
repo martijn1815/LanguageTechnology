@@ -749,7 +749,7 @@ def get_x_y(question, print_info=False):
         x, y, z = when_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
-    print(type(x))
+    if print_info: print("Type of x:", type(x))
     if type(x) == list:
         return x, y.strip(), z.strip()
     return x.strip(), y.strip(), z.strip()
@@ -960,7 +960,6 @@ def create_and_fire_query(question):
                     if type(x) == list:
                         for xx in x:
                             x_id = get_wiki_id(xx, type="property", x=i)
-                            print("test", x_id, y_id)
                             if x_id and y_id:
                                 query = get_query(x_id, y_id, z)
                                 answer = get_answer(query)
@@ -972,7 +971,6 @@ def create_and_fire_query(question):
                                         return answer
                     else:
                         x_id = get_wiki_id(x, type="property", x=i)
-                        print("test", x_id, y_id)
                         if x_id and y_id:
                             query = get_query(x_id, y_id, z)
                             answer = get_answer(query)
@@ -983,7 +981,6 @@ def create_and_fire_query(question):
                                 for ans in answer:
                                     for u in range(3):
                                         new_y_id = get_wiki_id(ans, type="entity", x=u)
-                                        print("subtest", new_y_id)
                                         new_query = get_query(None, new_y_id, None)
                                         new_answer = get_answer(new_query)
                                         try:
