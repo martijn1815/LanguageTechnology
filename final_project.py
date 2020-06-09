@@ -671,7 +671,19 @@ def is_when_question(parse):
 def when_question(parse, x, y, z):
     if parse[1].lemma_ == "be":
         # When was/is question
-        pass
+        for token in parse:
+            if token.pos_ in ["NOUN", "PROPN"]:
+                y += token.text + " "
+            if token.pos_ == "VERB":
+                # Date of birth:
+                if token.lemma_ == "bear":
+                    x = "date of birth"
+                # Date of death:
+                elif token.lemma_ == "die":
+                    x = "date of death"
+                # Other
+                else:
+                    x += token.lemma_ + " "
     elif parse[1].lemma_ == "do":
         # When did question:
         pass
