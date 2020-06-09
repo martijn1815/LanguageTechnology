@@ -1058,7 +1058,7 @@ def create_and_fire_query(question):
                 if answer:  # If an answer is found return it
                     return answer
 
-    return ["Could not find an answer"]
+    return None
 
 
 def main(argv):
