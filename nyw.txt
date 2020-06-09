@@ -11,7 +11,6 @@ X-of-Y questions not yet working correctly:
 431	What is the first law of Newton?
 433	What is the formula of the mass–energy equivalence?
 438	What is the given name of the patron saint of the internet?
-444	What is the highest point on earth, measured from the geographical center?
 446	What is the hottest temperature recorded on earth's surface?
 447	What is the largest animal in the world?
 448	What is the largest planet in the Solar System?
@@ -41,17 +40,13 @@ X-of-Y questions not yet working correctly:
 562	What is the work location of a teacher?
 563	What is the worst-case time complexity of quicksort?
 571	What kind of waves are present during an earthquake?
-585	What planets are part of the inner Solar System?
 587	What's another name for the Turing test?
-597	What temperature is the sun at its core?
 605	What units is the newton based on?
 608	What university was Alan Turing a student of when he published his doctoral thesis?
 611	What was madame Curie's official first name when she was born?
 617	What was the first mission with humans to land on the Moon?
 622	What was the topic of Stephen Hawking's doctoral thesis?
-624	What were the countries of citizen ship of Marie Curie?
 677	When was the first nuclear explosion tested?
-741	Which are the different types of Nobel prizes?
 742	Which are the uses of a rhinoceros horn?
 753	Which eclipse is it when the moon is between the sun and the earth?
 757	Which galaxy is the closest to us?
@@ -64,8 +59,6 @@ X-of-Y questions not yet working correctly:
 865	Who is the author of the article "Computing Machinery and Intelligence"?
 868	Who is the drummer of Linkin Park?
 869	Who is the father of mathematics?
-888	Who was the developer of the theory of relativity?
-889	Who was the discoverer of the theory of general relativity?
 890	Who was the doctorial advisor of Isaac Newton?
 892	Who was the first dog in space?
 894	Who was the first human in space?
