@@ -469,7 +469,7 @@ def description_question(parse, x, y, z):
 def is_who_question(parse):
     if parse[0].lemma_ == "who":
         return True
-    if parse[-2].lemma_ == "whom":
+    if parse[-2].lemma_ in ["whom","who"]:
         return True
     return False
 
@@ -614,7 +614,7 @@ def what_do_question(parse, x, y, z):
             x = "occupation"
         if token.head.lemma_ == "die":
             x = "cause of death"
-        if token.head.lemma_ == "consist":
+        if token.head.lemma_ in ["consist", "part"]:
             x = ["material used", "has part"]
         if token.head.lemma_ == "study":
             x = "studies"
@@ -626,13 +626,39 @@ def what_do_question(parse, x, y, z):
             x = ""
         if token.head.lemma_ == "belong":
             x = "instance of"
+        if token.head.lemma_ == "call":
+            x = "practiced by"
+        if token.lemma_ == "interaction":
+            x = "interaction"
+        if token.head.lemma_ == "speak":
+            x = "Languages spoken, written or signed"
+        if token.head.lemma_ == "mass":
+            x = "mass"
+        if token.head.lemma_ == "win":
+            x = "awards received"
+        if token.head.lemma_ == "shape":
+            x = "shape"
+        if token.head.lemma_ == "sound":
+            x = "produced sound"
+        if token.head.lemma_ == "temperature":
+            x = "temperature"
+            for token2 in parse:
+                if token2.lemma_ in ["centre", "core"]:
+                    z = "centre"
+        if token.head.lemma_ == "work":
+            x = "employer"
 
         if token.lemma_ != "what" and c > 2:
             if token.dep_ in ["nsubj", "nsubjpass", "csubj"] and token.pos_ != "PRON":
                 y += token.lemma_ + " "
             if token.dep_ in ["dobj", "pobj"]:
-                y += token.text + " "
-            if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj"]:
+                status = True
+                for token2 in parse:
+                    if token2.dep_ in ["nsubj", "nsubjpass", "csubj"] and token.pos_ != "PRON":
+                        status = False
+                if status:
+                    y += token.text + " "
+            if token.dep_ == "compound" and token.head.dep_ in ["nsubj", "dobj", "pobj"]:
                 y += token.text + " "
 
     return x, y, z

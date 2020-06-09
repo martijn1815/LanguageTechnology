@@ -25,21 +25,21 @@
 301-	What do people in the field of Aerophilately study?	Compound, again 
 302	What do the letters DNA stand for?		Gaaaast, serieus...
 303	What do we call a practitioner of Earth Sciences?
-304	What do we call the partiality that prevents objective or alternative consideration of an issue or situation in a scientific experiment?
+304-	What do we call the partiality that prevents objective or alternative consideration of an issue or situation in a scientific experiment?
 307	What fields did Newton work in?
 310	What important projects did Charles Babbage work on?
 570	What kind of interaction does a quark have?
 572	What languages did Isaac Newton speak?
 574	What mass does a human brain typically have?
 575	What mass does the Andromeda galaxy have?
-577	What Nobel Prize did Marie Curie win?
-578	What Nobel prize did Werner Heisenberg win?
+577-	What Nobel Prize did Marie Curie win?		ALl awards
+578-	What Nobel prize did Werner Heisenberg win?	All awards
 580	What parts does a brain have?
-581	What parts does a motherboard consist of?
+581-	What parts does a motherboard consist of?	motherboard = amod, occupation
 582	What parts does a neuron consists of?
 586	What planets does the inner solar system contain?
 588	What shape does DNA have?
-589	What sort of data do corpus linguists analyse?
+589-	What sort of data do corpus linguists analyse?
 591	What sound does a cat make?
 596	What temperature does the sun have at its core?
 607	What University did Isaac Newton work for?
