@@ -662,42 +662,6 @@ def count_question(parse, x, y, z):
     return x, y, "COUNT"
 
 
-def is_when_question(parse):
-    if parse[0].lemma_ == "when":
-        return True
-    return False
-
-
-def when_question(parse, x, y, z):
-    for token in parse:
-        if token.pos_ in ["NOUN", "PROPN"] and token.dep_ != "npadvmod":
-            y += token.text + " "
-        if token.pos_ == "NUM" and "world war" in y:
-            y += token.text + " "
-        if token.pos_ == "ADJ" and token.head.pos_ == "NOUN":
-            y += token.text + " "
-
-        if token.pos_ == "VERB":
-            # Date of birth:
-            if token.lemma_ == "bear":
-                x = "date of birth"
-            # Date of death:
-            elif token.lemma_ == "die":
-                x = "date of death"
-            # Point in time:
-            elif token.lemma_ in ["occur", "happen"]:
-                x = "point in time"
-            # Other
-            else:
-                x += token.lemma_ + " "
-        if token.dep_ == "npadvmod":
-            x += token.lemma_ + " "
-
-    if y.strip() == "black plague":
-        y = "black death"
-
-    return x, y, z
-
 def get_x_y(question, print_info=False):
     """
     Gets X and Y from questions using spacy
@@ -771,11 +735,6 @@ def get_x_y(question, print_info=False):
         # In question:
         if print_info: print("What do question")
         x, y, z = what_do_question(parse, x, y, z)
-
-    elif is_when_question(parse):
-        # When question:
-        if print_info: print("When question")
-        x, y, z = when_question(parse, x, y, z)
 
     if print_info: print("x =", x, "\t y =", y, "\t z =", z)
     if print_info: print("Type of x:", type(x))
