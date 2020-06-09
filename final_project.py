@@ -239,29 +239,38 @@ def xy_question(parse, x, y, z):
                         'kind ': 'subclass of',
                         'member ': ['has part', 'crew member'],
                         'doctorial advisor ': 'doctoral advisor',
-                        'planet ': 'child astronomical body',
+                        'planet ': ['child astronomical body', 'has part'],
                         'moons ': 'child astronomical body',
-                        'solar mass ': 'mass'}
+                        'solar mass ': 'mass',
+                        'boil ': 'boiling point',
+                        'different type ': 'has part',
+                        'pregnant': 'gestation period',
+                        'long ': ['length', 'conversion to SI unit'],
+                        'gravity': ['gravity', 'surface gravity'],
+                        'warm ': 'temperature',
+                        'main component ': 'has part',
+                        'material result ': 'product or material produced',
+                        'chemical element ': 'has part'}
 
     for token in parse:
 
         if ((token.dep_ == "nsubj" or (token.head.dep_ == "nsubj" and
                                        token.dep_ in ["amod", "compound"]))
-                and token.pos_ not in ["PRON", "DET", "ADJ"]) and token.text not in ['name', 'number'] and x == '':
+                and token.pos_ not in ["PRON", "DET", "ADJ"]) and token.lemma_ not in ['name', 'number'] and x == '':
             x += token.lemma_ + " "
-        elif token.dep_ in ["attr", "pcomp", "acomp", "advmod"] and token.pos_ in ["NOUN", "ADJ", "ADV"] and token.head.lemma_ in ["be", "at"] and x == '':
+        elif token.dep_ in ["attr", "pcomp", "acomp", "advmod"] and token.pos_ in ["NOUN", "ADJ", "ADV"] and token.head.lemma_ in ["be", "at"] and token.lemma_ not in ['how'] and x == '':
             x += token.lemma_ + " "
-        elif token.dep_ == "nsubj" and token.head.lemma_ in ['be', 'at'] and token.pos_ not in ['PRON', 'DET'] and token.text not in ['name', 'number'] and token.lemma_ not in x and y == '':
+        elif token.dep_ == "nsubj" and token.head.lemma_ in ['be', 'at', 'boil'] and token.pos_ not in ['PRON', 'DET'] and token.lemma_ not in ['name', 'number'] and token.lemma_ not in x and y == '':
             y += token.lemma_ + " "
         elif token.dep_ == "pobj" and token.pos_ == 'DET' and y == '':
             y += token.lemma_ + " "
 
-        if (token.dep_ in ["pobj", "appos", "dobj", "attr"] and token.pos_ in ['PROPN', 'NOUN']  and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
+        if (token.dep_ in ["pobj", "appos", "dobj", "attr"] and token.pos_ in ['PROPN', 'NOUN'] and token.lemma_ not in x and y == '') or (token.head.dep_ in ["pobj", "ROOT"] and
                                     token.dep_ in ["amod", "compound"] and
                                     token.pos_ not in ["PRON", "DET", "ADJ"]):
             if x == '':
                 x += token.lemma_ + " "
-            elif y == '' and token.lemma_ not in x and token.text not in ['study']:
+            elif y == '' and token.lemma_ not in x and token.text not in ['study', 'degrees', 'part', 'Celsius', 'Leonhard', 'Manhattan', 'Inner']:
                 y += token.lemma_ + " "
         elif (token.dep_ == "poss" and token.pos_ not in ["DET", "PROPN"]) or (token.head.dep_ == "poss" and
                                       token.dep_ in ["amod", "compound"] and
@@ -272,7 +281,7 @@ def xy_question(parse, x, y, z):
             y += token.lemma_ + " " + token.head.lemma_ + " "
         elif token.dep_ == "compound" and token.head.dep_ in ['dobj', 'attr'] and x == '':
             x += token.lemma_ + " " + token.head.lemma_ + " "
-        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x and y == '':
+        elif token.dep_ in ["compound", "amod"] and token.head.dep_ in ["pobj", "attr", "poss"] and token.lemma_ not in x and token.head.lemma_ not in x and token.lemma_ not in ['degree'] and y == '':
             y = token.lemma_ + " " + token.head.lemma_ + " "
 
         if token.dep_ == "nummod" and token.head.dep_ in ["nmod", "attr", "pobj"] and y == '':
@@ -300,8 +309,11 @@ def xy_question(parse, x, y, z):
             x = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
         if token.dep_ == 'compound' and token.head.dep_ == 'compound' and token.head.head.dep_ == 'pobj' and y == '':
             y = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
-        if token.lemma_ in ['birth', 'work', 'death', 'sound'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause', 'speed']:
+        if token.lemma_ in ['birth', 'work', 'death', 'sound', 'citizenship'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['date', 'field', 'place', 'cause', 'speed', 'country']:
             x = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
+
+        if token.lemma_ in ['relativity'] and token.head.lemma_ == 'of' and token.head.head.lemma_ in ['theory']:
+            y = token.head.head.lemma_ + " " + token.head.lemma_ + " " + token.lemma_ + " "
 
         if token.dep_ in ['amod', 'compound'] and token.head.dep_ == 'nsubj' and x == '':
             x = token.lemma_ + " " + token.head.lemma_ + " "
@@ -312,18 +324,23 @@ def xy_question(parse, x, y, z):
         if token.dep_ in ['appos', 'nsubjpass'] and token.pos_ not in ['DET'] and y == '':
             y = token.lemma_
 
-        if token.dep_ == 'nummod' and token.head.dep_ in ['compound', 'pobj']:
+        if token.dep_ == 'nummod' and token.head.dep_ in ['compound', 'pobj'] and token.head.lemma_ not in ['parent', 'atm']:
             if token.head.head.dep_ in ['pobj', 'appos']:
                 z = token.lemma_ + " " + token.head.lemma_ + " " + token.head.head.lemma_ + " "
             else:
                 z = token.lemma_ + " " + token.head.lemma_
 
+        if token.dep_ == 'relcl' and token.pos_ in ['VERB', 'NOUN']:
+            x = token.lemma_ + " "
+
         if token.text == 'invented':
             x = ["time of discovery or invention", "inception"]
         elif token.text in ["placed", "located"]:
             x = "part of" + " "
-        elif token.text == 'children':
-            x = 'child'
+        elif token.text in ['children', 'pregnant', 'gravity']:
+            x = token.lemma_
+        elif token.text in ['triangles', 'bronze', 'pancake', 'Advil', 'Tylenol', 'lion', 'mitochondrion', 'neptune', 'CERN', 'paracetamol', 'sun', 'Sun', 'elephant', 'temperature', 'alcohol']:
+            y = token.lemma_
         elif token.text == 'parts':
             x = 'has part'
         elif token.text == 'died':
@@ -334,66 +351,52 @@ def xy_question(parse, x, y, z):
             z = "MAXIMUM"
         elif token.text == 'number':
             z = "COUNT"
-        elif token.text == 'triangles':
-            y = 'triangle'
-        elif token.text == 'bronze':
-            y = 'bronze'
-        elif token.text == 'pancake':
-            y = 'pancake'
-        elif token.text == 'Advil':
-            y = 'Advil'
-        elif token.text == 'Tylenol':
-            y = 'Tylenol'
         elif token.text == 'robins':
             y = 'European robin'
         elif token.text == 'Zr':
             y = 'zirconium'
-        elif token.text == 'lion':
-            y = 'lion'
-        elif token.text == 'mitochondrion':
-            y = 'mitochondrion'
-        elif token.text == 'neptune':
-            y = 'neptune'
         elif token.text == 'Moon':
             y = 'moon'
-        elif token.text == 'CERN':
-            y = 'CERN'
         elif token.text == 'Avogadro':
             y = 'Avogadro constant'
-        elif token.text == 'paracetamol':
-            y = 'paracetamol'
-        elif token.text in ['sun', 'Sun']:
-            y = 'sun'
-        elif token.text == 'elephant':
-            y = 'elephant'
         elif token.text == 'Nicolas':
             y = 'Nicolas Tesla'
         elif token.text == 'Isaac':
             y = 'Isaac Newton'
         elif token.text in ['Saturn', 'saturn']:
             y = 'Saturn'
-        elif token.text in ['center', 'centre']:
+        elif token.text in ['center', 'centre', 'core'] and z == '':
             z = 'CENTER'
-        elif token.text == 'temperature':
-            x = 'temperature'
         elif token.text in ['sixth', 'seventh', 'third', 'second', 'fourth']:
-            z = token.text
+            z = token.lemma_
         elif token.text == 'definition':
             definition = True
         elif token.text in ['liquid', 'solid']:
             z = token.text
-        elif token.text == 'alcohol':
-            y = 'alcohol'
+        elif token.text == 'Solar' and y in ['inner System ', 'Inner System ']:
+            y = 'Inner Solar System'
+        elif token.text == 'Curie' and y == 'Marie ':
+            y = 'Marie Curie'
+        elif token.text == 'Nobel' and token.head.lemma_ == 'prize':
+            y = 'Nobel prize'
+        elif token.text == 'geographical' and token.head.text == 'center':
+            z = 'geographical center'
 
-        if y == "Moon " and x == "far ":
+        if y in ["Moon ", "moon ", "Moon", "moon"] and x in ["far ", "far"]:
             x = "distance from Earth" + " "
         elif y in ['solar system ', 'Solar System ', 'solar System ', 'Solar system '] and x == 'planet ':
             y = 'Sun'
+        elif y == 'red cell ' and token.lemma_ == 'blood':
+            y = 'red blood cell'
+        elif y == 'Great Reef ' and token.lemma_ == 'Barrier':
+            y = 'Great Barrier Reef'
         elif y in ['light year', 'astronomical unit']:
             x = 'conversion to SI unit' + " "
         elif x == 'type ':
             x = ['followed by', 'subclass of']
-        elif y == 'Inner Solar ':
+        elif y in ['Inner Solar ']:
+            y = 'Inner Solar System'
+        elif y in ['inner system ', 'Inner System '] and token.lemma_ in ['solar', 'Solar']:
             y = 'Inner Solar System'
         elif y == 'horsepower ':
             y = 'Metric horsepower'
@@ -818,13 +821,26 @@ def get_query(x, y, z):
                                                 }
                                              }
                                              '''
-        elif z in ['0 degree Celsius', '75 degree']:
+        elif z == 'geographical center':
             query = '''
                                 SELECT ?answerLabel WHERE {
                                 '''
             query += "wd:{0} p:{1} ?statement.".format(y, x)
             query += '''?statement ps:{0} ?answer;'''.format(x)
-            query += '''pq:P2076 {0}.'''.format(int(z.split(" ")[0]))
+            query += '''pq:P459 wd:Q590232.'''
+            query += '''
+                                                         SERVICE wikibase:label {
+                                                            bd:serviceParam wikibase:language "en".
+                                                            }
+                                                         }
+                                                         '''
+        elif z in ['0 degree Celsius', '75 degree', 'degree Celsius']:
+            query = '''
+                                SELECT ?answerLabel WHERE {
+                                '''
+            query += "wd:{0} p:{1} ?statement.".format(y, x)
+            query += '''?statement ps:{0} ?answer;'''.format(x)
+            query += '''pq:P2076 ({0}|1).'''.format(int(z.split(" ")[0]))
             query += '''
                                                          SERVICE wikibase:label {
                                                             bd:serviceParam wikibase:language "en".
