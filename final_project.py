@@ -1079,7 +1079,7 @@ def main(argv):
                     print("\t{0}".format(ans), end="")
             print()
         else:
-            print("Error, please input question in right format!")
+            print("Error: Please input question in right format!", file=sys.stderr)
 
 
 if __name__ == "__main__":
