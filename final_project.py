@@ -666,7 +666,12 @@ def is_when_question(parse):
 
 
 def when_question(parse, x, y, z):
-    print(parse[1].lemma_)
+    if parse[1].lemma_ == "be":
+        # When was/is question
+        pass
+    elif parse[1].lemma_ == "do":
+        # When did question:
+        pass
     return x, y, z
 
 def get_x_y(question, print_info=False):
