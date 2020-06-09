@@ -177,7 +177,7 @@ def when_question(parse, x, y, z):
                     y += token.lemma_ + " "
 
     if x == "": #if x does not have a value try point in time
-        x = "point in time"
+        x = ["point in time","inception","time of discovery or invention"]
 
     if y != "" and y[-2] == "s" and y[-3] == "e":
         y = y[:-2]
