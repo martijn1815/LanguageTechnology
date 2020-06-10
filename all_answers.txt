@@ -1,0 +1,51 @@
+# Input a question:
+1	AI researcher
+2
+3	chemical compound
+4	Brunswick
+5
+6	2006-01-01T00:00:00Z
+7	Robert Brown
+8	Syracuse
+9	no
+10	smallest indivisible unit of a chemical substance
+11
+12	language designed to communicate instructions to a machine. Not to be confused with  "programming language implementation" (Q4117406)
+13	Alfred Nobel
+14
+15	professor
+16
+17
+18
+19
+20	3
+21	0.0652
+22	British mathematician, logician, cryptanalyst, and computer scientist
+23
+24	research and development project that produced the first atomic bombs.
+25	Samuel Morse	Alfred Vail
+26
+27
+28	headache	fatigue	fever	vomiting	cyanosis	bradycardia
+29
+30
+31	influential British physicist and mathematician
+32	Alan Turing
+33	Wikimedia list article
+34
+35	1846-09-23T00:00:00Z
+36
+37	American linguist, philosopher and activist
+38	<http://www.wikidata.org/entity/Q405> Point(168.2 18.4)
+39
+40	University of Groningen
+41
+42
+43
+44	Zebedee
+45	15700000
+46	declarative programming
+47	Lutheranism
+48
+49
+50	New Haven
